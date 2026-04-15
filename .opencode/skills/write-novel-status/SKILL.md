@@ -6,7 +6,7 @@ Check the status of all novel projects or a specific project, showing current ph
 ## Behavior
 
 ### 1. Directory Validation
-- Working directory must be: `/home/dubyte/Documents/Workspace/words/`
+- Working directory must be: `[workspace]/`
 - If not in correct directory: Error with message
 
 ### 2. Project Selection
@@ -65,6 +65,12 @@ No projects found.
 ## Usage Examples
 
 ```bash
+# Check current/stored project (or all if none stored)
+skill(name="write-novel-status")
+
+# Check specific project
+skill(name="write-novel-status", user_message="MyFantasyNovel")
+```
 # Check all projects
 skill(name="write-novel-status")
 
@@ -73,7 +79,7 @@ skill(name="write-novel-status", user_message="MyFantasyNovel")
 ```
 
 ## Error Handling
-- Wrong directory: "Error: Must run from /home/dubyte/Documents/Workspace/words/"
+- Wrong directory: "Error: Must run from [workspace]/"
 - Project not found: "Error: Project '[name]' does not exist."
 
 ## Output Format

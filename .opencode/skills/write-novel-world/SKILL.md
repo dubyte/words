@@ -9,7 +9,7 @@ Build out the novel's setting with essential foundations first, then optionally 
 ## Behavior
 
 ### 1. Directory Validation
-- Working directory must be: `/home/dubyte/Documents/Workspace/words/`
+- Working directory must be: `[workspace]/`
 
 ### 2. Project Selection
 1. **If project name provided**: Use that project
@@ -276,7 +276,7 @@ world/
 ```
 
 ## Error Handling
-- Wrong directory: "Error: Must run from /home/dubyte/Documents/Workspace/words/"
+- Wrong directory: "Error: Must run from [workspace]/"
 - Phase 2 incomplete: "Complete Phase 2 first with write-novel-foundations"
 - No progress file issues: Create new, don't error
 

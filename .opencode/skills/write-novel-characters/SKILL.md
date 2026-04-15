@@ -9,7 +9,7 @@ Create essential character foundations first, then optionally explore deep psych
 ## Behavior
 
 ### 1. Directory Validation
-- Working directory must be: `/home/dubyte/Documents/Workspace/words/`
+- Working directory must be: `[workspace]/`
 
 ### 2. Project Selection
 1. **If project name provided**: Use that project

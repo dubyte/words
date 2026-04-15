@@ -20,14 +20,14 @@ Initialize a new novel project with complete directory structure and Git reposit
 - If invalid: Error "'[name]' is not a valid project name. Use alphanumeric characters, hyphens, or underscores."
 
 ### 3. Directory Validation
-- Working directory must be: `/home/dubyte/Documents/Workspace/words/`
+- Working directory must be: `[workspace]/`
 - If not in correct directory: Error with message
 - Check if project name already exists:
   - If exists: Error "Project '[name]' already exists. Choose a different name or use write-novel-rename."
   - If not exists: Proceed
 
 ### 4. Project Structure Creation
-Create the following structure in `/home/dubyte/Documents/Workspace/words/[project-name]/`:
+Create the following structure in `[workspace]/[project-name]/`:
 
 ```
 [project-name]/
@@ -103,7 +103,7 @@ After successful creation, ask user:
 ```
 ✅ Project '[name]' created successfully!
 
-📁 Location: /home/dubyte/Documents/Workspace/words/[project-name]/
+📁 Location: [workspace]/[project-name]/
 
 ❓ Set '[name]' as current project? (y/n)
 ```
@@ -128,7 +128,7 @@ skill(name="write-novel-init")
 ```
 
 ## Error Handling
-- Wrong directory: "Error: Must run from /home/dubyte/Documents/Workspace/words/"
+- Wrong directory: "Error: Must run from [workspace]/"
 - Invalid project name: "Error: '[name]' is not a valid project name. Use alphanumeric characters, hyphens, or underscores."
 - Reserved name: "Error: '[name]' is a reserved system name. Choose a different name."
 - Duplicate name: "Error: Project '[name]' already exists. Choose a different name or use write-novel-rename."
