@@ -58,6 +58,7 @@ skill(name="write-novel-compile")      # Generate EPUB to read or share
 | `write-novel-unuse` | **Stop using** a project (go back to explicit selection) |
 | `write-novel-rename` | Rename a project (especially for untitledN → real name) |
 | `write-novel-status` | Check status of all projects or current project |
+| `write-novel-archive` | **Archive** a project (move to archives folder) |
 
 ### Phase Skills (Progressive Depth)
 
@@ -281,8 +282,18 @@ MyNovel/
 - **Use Preview Mode**: Compile just the first 3 chapters to test formatting without waiting for the full book
 - **Convert formats**: EPUB works everywhere except old Kindle. Use `ebook-convert` (Calibre) to make MOBI/AZW3 for Kindle or PDF for printing
 
+---
+
+## Technical Note: Skill Symlinking
+
+The skills in this repository are symlinked for development convenience:
+- Primary location: `.gemini/skills/`
+- Symlink: `.opencode/skills/`
+
+This allows you to work on the skills in either location and have changes reflected immediately in both.
 
 ---
+
 
 ## Getting Help
 

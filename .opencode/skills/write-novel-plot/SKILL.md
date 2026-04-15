@@ -20,6 +20,8 @@ Structure your story with essential plot points first, then optionally layer com
 ### 3. Phase Validation
 - Check if Phase 4 is complete (`/characters/protagonist.md` not empty)
 - If not: "Complete Phase 4 first with write-novel-characters"
+- Check if Phase 5 essentials exist (`/plot/chapter_outlines/overview.md` exists and NOT empty)
+- If has content: Show current structure/chapters and offer to continue or view
 
 ### 4. Plot Structure
 
