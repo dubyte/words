@@ -1,0 +1,41 @@
+# Novel Writing Workspace - Git Ignore
+
+# OpenCode skill configurations and progress tracking
+.opencode/
+
+# Compiled e-books (generated files)
+**/exports/*.epub
+**/exports/*.mobi
+**/exports/*.azw3
+**/exports/*.pdf
+
+# Temporary files
+*.tmp
+*.bak
+*.swp
+*~
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+.Spotlight-V100
+.Trashes
+
+# Editor files
+.vscode/
+.idea/
+*.sublime-*
+
+# Backup files
+*.backup
+*.old
+
+# Local-only notes (optional - remove if you want to commit these)
+local-notes.md
+personal-todo.md
+
+# Large assets that shouldn't be in git (optional)
+# Uncomment if you have large image/audio files
+# **/assets/*.mp3
+# **/assets/*.wav
+# **/assets/*.mp4
