@@ -1,6 +1,6 @@
 # Novel Writing Skills - Quick Start Guide
 
-This directory contains skills for writing novels in the `/home/dubyte/Documents/Workspace/words/` folder.
+This directory contains skills for writing novels in the current folder.
 
 ## Philosophy: Progressive Depth
 
