@@ -1,93 +1,324 @@
-# Words
+# Novel Writing Skills - Quick Start Guide
+
+This directory contains skills for writing novels in the `/home/dubyte/Documents/Workspace/words/` folder.
+
+## Philosophy: Progressive Depth
+
+**Start Simple, Go Deep As Needed**
+
+These skills are designed to be **flexible**—you can write a complete novel with just the essentials, or explore deep complexity where your story demands it.
+
+**Essentials vs. Optional:**
+- ✅ **Essentials** = What you need to write the story (always offered first)
+- 📚 **Optional** = What enhances the story (available anytime, never required)
+
+**Why this approach?**
+- 🚀 **Fast start**: Begin writing sooner
+- 🎯 **No overwhelm**: Not bogged down by 50 world-building questions upfront  
+- 🔄 **Iterate**: Add depth where the story actually needs it
+- 📝 **Your choice**: Simple story? Essentials only. Epic saga? Go deep.
+
+---
+
+## Quick Start
+
+```bash
+# 1. Create a new novel project
+skill(name="write-novel-init", user_message="MyAwesomeNovel")
+
+# 2. Select it for easy access
+skill(name="write-novel-use", user_message="MyAwesomeNovel")
+
+# 3. Work through the phases (essentials first, go deep if you want)
+skill(name="write-novel-foundations")  # Genre, themes, logline
+skill(name="write-novel-world")        # World building (essentials → optional deep dives)
+skill(name="write-novel-characters")   # Characters (essentials → optional frameworks)
+skill(name="write-novel-plot")         # Plot (essentials → optional complexity)
+skill(name="write-novel-draft")        # Write chapters (essentials → optional tools)
 
 
+# Check progress anytime
+skill(name="write-novel-status")
 
-## Getting started
+# Compile to e-book when ready
+skill(name="write-novel-compile")      # Generate EPUB to read or share
 
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
+---
 
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
+## All Available Skills
 
-## Add your files
+### Management Skills
 
-* [Create](https://docs.gitlab.com/user/project/repository/web_editor/#create-a-file) or [upload](https://docs.gitlab.com/user/project/repository/web_editor/#upload-a-file) files
-* [Add files using the command line](https://docs.gitlab.com/topics/git/add_files/#add-files-to-a-git-repository) or push an existing Git repository with the following command:
+| Skill | Purpose |
+|-------|---------|
+| `write-novel-init` | Create a new novel project (auto-names untitled1, untitled2, etc.) |
+| `write-novel-use` | **Select** a project to work on (saves typing it every time) |
+| `write-novel-unuse` | **Stop using** a project (go back to explicit selection) |
+| `write-novel-rename` | Rename a project (especially for untitledN → real name) |
+| `write-novel-status` | Check status of all projects or current project |
+
+### Phase Skills (Progressive Depth)
+
+| Skill | Essentials | Optional Deep Dives |
+|-------|-----------|---------------------|
+| `write-novel-foundations` | Genre, audience, themes, logline | — |
+| `write-novel-world` | Overview, geography, basic magic/tech | History, economy, politics, flora/fauna, factions, cultures, calendar, daily life |
+| `write-novel-characters` | Protagonist/antagonist core (want/need/flaw), key cast list | Full profiles, Enneagram/MBTI, arc mapping, relationship webs, voice & POV |
+| `write-novel-plot` | Choose structure, 7 key plot points, basic chapter breakdown | Complete beat sheets, detailed outlines, subplots, scene breakdowns, foreshadowing, pacing analysis |
+
+| `write-novel-draft` | AGENTS.md context, write chapter draft | Scene breakdowns, revision notes, alternative drafts, writing analytics, deep context |
+| `write-novel-compile` | Compile chapters into EPUB e-book | Preview mode (first 3 chapters), custom ranges, styling, front/back matter, convert to MOBI/PDF |
+
+---
+
+## How Progressive Depth Works
+
+### Example: World Building Session
 
 ```
-cd existing_repo
-git remote add origin https://gitlab.com/dubyte/words.git
-git branch -M main
-git push -uf origin main
+You run: skill(name="write-novel-world")
+
+[PHASE 4A: ESSENTIALS]
+✓ World overview (2-3 paragraphs)
+✓ Geography & 3-5 key locations  
+✓ Basic magic/technology rules
+✓ Quick faction/culture notes
+
+✅ Essentials Complete! Your world is functional.
+
+Go deeper? Choose optional elements:
+1. Detailed History & Timeline
+2. Economic Systems & Trade
+3. Political Structures
+4. Flora, Fauna & Ecosystems
+5. Calendar, Holidays & Time
+6. Factions Deep Dive
+7. Cultures Deep Dive
+8. Daily Life (food, fashion, customs)
+9. Done - move to Phase 4 (characters)
+
+Your choice: 
 ```
 
-## Integrate with your tools
+**You can:**
+- Pick **zero** optional items and move on immediately
+- Pick **one or more** to explore now
+- Come back **later** to add any optional element
+- **Mix and match**—do some phases deep, others simple
 
-* [Set up project integrations](https://gitlab.com/dubyte/words/-/settings/integrations)
+### Progress Tracking
 
-## Collaborate with your team
+Each skill tracks your progress in `.opencode/[phase]_progress_[project].md`:
 
-* [Invite team members and collaborators](https://docs.gitlab.com/user/project/members/)
-* [Create a new merge request](https://docs.gitlab.com/user/project/merge_requests/creating_merge_requests/)
-* [Automatically close issues from merge requests](https://docs.gitlab.com/user/project/issues/managing_issues/#closing-issues-automatically)
-* [Enable merge request approvals](https://docs.gitlab.com/user/project/merge_requests/approvals/)
-* [Set auto-merge](https://docs.gitlab.com/user/project/merge_requests/auto_merge/)
+```
+MyNovel - World Building Progress
+Last Updated: 2024-01-15
 
-## Test and Deploy
+ESSENTIALS:
+✅ World Overview
+✅ Geography
+✅ Magic System
+✅ Quick Notes
 
-Use the built-in continuous integration in GitLab.
+OPTIONAL:
+⏳ Detailed History (not started)
+✅ Economic System (completed 2024-01-15)
+⏳ Political Structures (not started)
+✅ Factions Deep Dive (completed 2024-01-15) - 3 factions detailed
+...
+```
 
-* [Get started with GitLab CI/CD](https://docs.gitlab.com/ci/quick_start/)
-* [Analyze your code for known vulnerabilities with Static Application Security Testing (SAST)](https://docs.gitlab.com/user/application_security/sast/)
-* [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/topics/autodevops/requirements/)
-* [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/user/clusters/agent/)
-* [Set up protected environments](https://docs.gitlab.com/ci/environments/protected_environments/)
+---
 
-***
+## Project Selection Flow
 
-# Editing this README
+Each skill follows this priority:
+1. **Project name provided** → Use it
+2. **Project selected with `write-novel-use`** → Use selected project
+3. **Neither** → Show numbered list of all projects
 
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!). Thanks to [makeareadme.com](https://www.makeareadme.com/) for this template.
+---
 
-## Suggestions for a good README
+## Example Workflows
 
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
+### Fast Path (Minimal)
+```bash
+skill(name="write-novel-init", user_message="MyNovel")
+skill(name="write-novel-use", user_message="MyNovel")
+skill(name="write-novel-foundations")  # Essentials
+skill(name="write-novel-world")        # Essentials only → "Done? 9. Continue"
+skill(name="write-novel-characters")   # Essentials only
+skill(name="write-novel-plot")         # Essentials only
+skill(name="write-novel-draft")        # Write with basic context
+# Novel complete!
+# Compile to EPUB and read it!
+skill(name="write-novel-compile")      # Generate EPUB e-book
+# Novel complete!
+```
 
-## Name
-Choose a self-explaining name for your project.
+### Deep Path (Comprehensive)
+```bash
+# Same start...
+skill(name="write-novel-world")
+# Do essentials...
+# Then select: 1. History, 2. Economy, 3. Politics, 5. Calendar, 6. Factions, 7. Cultures
 
-## Description
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
+skill(name="write-novel-characters")
+# Do essentials...
+# Then select: 1. Deep Protagonist, 4. Enneagram, 6. Relationship Webs, 7. Voice Notes
 
-## Badges
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
+# ... continue adding depth where needed
+# When ready to share or read:
+skill(name="write-novel-compile")      # Generate EPUB with cover, TOC, metadata
+```
 
-## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
+### Mixed Path (Recommended)
+```bash
+skill(name="write-novel-world")        # Essentials only → move fast
+skill(name="write-novel-characters")   # Essentials only → keep momentum
+skill(name="write-novel-plot")         # Essentials only → start writing sooner
+skill(name="write-novel-draft")        # Write 5 chapters...
+# Realize world needs more depth
+skill(name="write-novel-world")        # Add optional: politics & factions
+# Continue drafting with better understanding...
+# When draft is complete:
+skill(name="write-novel-compile")      # Generate EPUB e-book to read/share
+```
 
-## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
+---
 
-## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
+## Project Structure
 
-## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
+Each novel project gets this structure:
 
-## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
+```
+MyNovel/
+├── README.md               # Project overview & TODO list
+├── metadata/
+│   ├── genre.md
+│   ├── target_audience.md
+│   └── themes.md
+├── world/                  # Essentials + Optional
+│   ├── overview.md         # Essential
+│   ├── geography.md        # Essential
+│   ├── magic_system.md     # Essential
+│   ├── notes.md            # Essential
+│   ├── history_detailed.md # Optional
+│   ├── economy.md          # Optional
+│   ├── politics.md         # Optional
+│   ├── ecosystem.md        # Optional
+│   ├── factions/           # Basic notes (essential) + Detailed (optional)
+│   └── cultures/           # Basic notes (essential) + Detailed (optional)
+├── characters/             # Essentials + Optional
+│   ├── protagonist.md      # Core (essential) + Deep (optional)
+│   ├── antagonist.md       # Core (essential) + Deep (optional)
+│   ├── notes.md            # Essential (cast list)
+│   ├── personality_frameworks.md  # Optional
+│   ├── arc_mapping.md      # Optional
+│   ├── relationship_web.md # Optional
+│   ├── voice_notes.md      # Optional
+│   └── side/               # Optional detailed profiles
+├── plot/                   # Essentials + Optional
+│   ├── [structure]_basic.md     # Essential
+│   ├── [structure]_detailed.md  # Optional
+│   ├── chapter_outlines/
+│   │   ├── overview.md          # Essential
+│   │   ├── chapter_01_detailed.md  # Optional
+│   │   └── ...
+│   ├── subplots.md         # Optional
+│   ├── foreshadowing.md    # Optional
+│   └── pacing.md           # Optional
+├── chapters/               # Drafts + Optional tools
+│   ├── chapter_01/
+│   │   ├── AGENTS.md            # Essential (basic context)
+│   │   ├── AGENTS_detailed.md   # Optional (deep context)
+│   │   ├── draft.md             # Essential (the chapter!)
+│   │   ├── scenes.md            # Optional (scene breakdown)
+│   │   └── revision_notes.md    # Optional (issues to fix)
+│   └── chapter_02/
+│       └── ...
+├── exports/                # Compiled e-books
+│   ├── MyNovel_v1.epub
+│   ├── MyNovel_v2.pdf
+│   └── ...
+├── assets/                 # Covers, styling
+│   ├── cover.jpg
+│   └── style.css
+└── appendix/
+└── appendix/
+    └── inspiration.md
+```
 
-## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
+---
 
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
+## Tips
 
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
+### For Fast Writers
+- Stick to essentials through all phases
+- Add optional elements only when stuck or during revision
+- Remember: Finished draft beats perfect outline
 
-## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
+### For Planners
+- Go deep on world, characters, and plot before drafting
+- Use scene breakdowns and foreshadowing plans
+- Build comprehensive series bible
 
-## License
-For open source projects, say how it is licensed.
+### For Discovery Writers
+- Do essentials fast, start drafting
+- Add optional depth when the story demands it
+- Use revision notes instead of detailed outlining
 
-## Project status
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
+### For Everyone
+- **Multiple novels**: Create many projects, use `write-novel-use` to switch
+- **Auto-naming**: Don't worry about the perfect name initially. Start with `write-novel-init` and rename later
+- **Check status**: Run `write-novel-status` anytime to see where you left off
+- **Git integrated**: Every change is automatically committed
+- **AI assistance**: Phase 6 (draft) creates AGENTS.md files with context to help AI write chapters
+- **Return anytime**: Re-run any phase skill to add optional elements later
+- **Compile frequently**: Run `write-novel-compile` after each chapter to see your progress as a real book—great motivation!
+- **Use Preview Mode**: Compile just the first 3 chapters to test formatting without waiting for the full book
+- **Convert formats**: EPUB works everywhere except old Kindle. Use `ebook-convert` (Calibre) to make MOBI/AZW3 for Kindle or PDF for printing
+
+
+---
+
+## Getting Help
+
+- `skill(name="write-novel-status")` - See what phase you're on and what's optional vs essential
+- `skill(name="write-novel-use")` - Shows which project is currently selected
+- `skill(name="write-novel-world")` (or any phase) - Shows your progress and available optional elements
+- `skill(name="write-novel-compile")` - Compile your draft chapters into a readable EPUB e-book
+
+- Each skill has its own detailed SKILL.md in `.opencode/skills/[skill-name]/`
+
+---
+
+## The 80/20 Rule
+
+**80% of your story comes from 20% of planning.**
+
+**That 20% (Essentials):**
+- Clear protagonist with want/need/flaw
+- Antagonist who opposes them
+- World that makes sense
+- 7 key plot points
+- Chapters roughly planned
+
+**The other 80% (Optional):**
+- Deep history, complex politics
+- Psychological frameworks
+- Detailed scene breakdowns
+- Foreshadowing trackers
+
+**Start with the 20%. Add from the 80% only where it serves the story.**
+
+---
+
+## Philosophy Summary
+
+> "Perfectionism is the voice of the oppressor, the enemy of the people. It will keep you cramped and insane your whole life... I think perfectionism is based on the obsessive belief that if you run carefully enough, hitting each stepping-stone just right, you won't have to die. The truth is that you will die anyway and that a lot of people who aren't even looking at their feet are going to do a whole lot better than you, and have a lot more fun while they're doing it." 
+> — Anne Lamott
+
+**Write the story. Make it work. Make it better later.**
+
+These skills support that philosophy by getting you writing fast while keeping rich tools available when you need them.
