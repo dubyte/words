@@ -31,8 +31,6 @@ Create the following structure in `[workspace]/[project-name]/`:
 
 ```
 [project-name]/
-├── .git/                    # Git repository
-├── .gitignore              # Ignore meta files
 ├── README.md               # Project overview and TODO list
 ├── metadata/
 │   ├── genre.md           # (empty initially)
@@ -40,9 +38,9 @@ Create the following structure in `[workspace]/[project-name]/`:
 │   └── themes.md          # (empty initially)
 ├── world/
 │   ├── overview.md        # (empty initially)
-│   ├── history.md         # (empty initially)
 │   ├── geography.md       # (empty initially)
 │   ├── magic_system.md    # (empty initially)
+│   ├── notes.md           # Essential (cast/factions list)
 │   ├── factions/          # (directory)
 │   └── cultures/          # (directory)
 ├── characters/
@@ -57,13 +55,15 @@ Create the following structure in `[workspace]/[project-name]/`:
     └── inspiration.md     # (empty initially)
 ```
 
-**Note**: `three_act_structure.md` is NOT created in Phase 1. It will be created in Phase 5 based on the user's chosen plotting method.
+**Note**: `history.md` is NOT created in Phase 1 as it's an optional Phase 3 element. `notes.md` is added as it's an essential world building element.
 
-### 5. README.md Template
-Create README.md with the following content:
+...
 
-```markdown
-# [Project Name]
+### 7. Git Initialization
+- Check if `[workspace]/.git` exists.
+  - If it exists: Just run `git add [project-name]` from workspace root.
+  - If not exists: Run `git init` in project directory, then `git add .` and initial commit.
+- Initial commit: "Initial commit: Project structure for '[project-name]'"
 
 **Created**: [Date]
 **Current Phase**: Phase 1: Project Setup Complete

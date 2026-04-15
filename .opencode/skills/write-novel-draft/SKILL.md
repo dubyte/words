@@ -18,8 +18,8 @@ Write chapter drafts with essential context and support, then optionally layer r
    - If no stored project: List all projects, show numbered list, prompt for selection
 
 ### 3. Phase Validation
-- Check if Phase 5 is complete (`/plot/chapter_outlines/` has files or basic structure exists)
-- If not: "Complete Phase 5 first with write-novel-plot (even basic structure is enough to start)"
+- Check if Phase 5 is complete (`/plot/chapter_outlines/overview.md` exists and NOT empty)
+- If not: "Complete Phase 5 first with write-novel-plot (at minimum, create the chapter breakdown overview.md)"
 - Show current drafting progress
 
 ### 4. Drafting Structure

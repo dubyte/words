@@ -16,23 +16,34 @@ Check the status of all novel projects or a specific project, showing current ph
    - If no stored project: Show overview of all projects
 For each project, determine current phase by checking file contents:
 
-**Phase Detection:**
-- **Phase 1 (Setup)**: Project exists (always complete if project exists)
-- **Phase 2 (Foundations)**: `/metadata/genre.md` is NOT empty
-- **Phase 3 (World Building)**: `/world/overview.md` is NOT empty
-- **Phase 4 (Characters)**: `/characters/protagonist.md` is NOT empty
-- **Phase 5 (Plot)**: `/plot/high_level_summary.md` is NOT empty AND `/plot/chapter_outlines/` has files
-- **Phase 6 (Drafting)**: `/chapters/` has files with content
+**Phase Detection & Deep Status:**
+For each project, check file existence and read `.opencode/[phase]_progress_[project].md` if available:
+
+- **Phase 1 (Setup)**: Project directory exists.
+- **Phase 2 (Foundations)**: Check `/metadata/genre.md`.
+- **Phase 3 (World Building)**: Check `/world/overview.md` and `.opencode/world_progress_[project].md`.
+  - Report: "Essentials [X/4] | Optional [Y/8]"
+- **Phase 4 (Characters)**: Check `/characters/protagonist.md` and `.opencode/character_progress_[project].md`.
+  - Report: "Essentials [X/3] | Optional [Y/8]"
+- **Phase 5 (Plot)**: Check `/plot/chapter_outlines/` and `.opencode/plot_progress_[project].md`.
+- **Phase 6 (Drafting)**: Check `/chapters/` and `.opencode/drafting_progress_[project].md`.
 
 ### 3. Project Status Display
 
 **If specific project name provided:**
-Show detailed status for that single project:
+Show detailed status including the progress of optional elements:
 ```
 📚 Project: [project-name]
 📍 Current Phase: Phase X - [Phase Name]
-✅ Completed: [list of completed phases]
-⏳ Next: [Phase Y - Phase Name]
+
+✅ ESSENTIALS:
+   [List of completed essentials for current phase]
+
+📚 OPTIONAL DEPTH:
+   [X] of [Y] deep-dives completed
+   Next recommended: [Item]
+
+⏳ Next Phase: [Phase Y]
 📝 Run: write-novel-[next-phase] [project-name]
 ```
 

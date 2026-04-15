@@ -34,6 +34,7 @@ Rename an existing novel project (especially useful for renaming auto-generated 
 - Rename the directory from `[source]` to `[new-name]`
 - Update any internal references (if applicable)
 - Update README.md title if it contains the old name
+- **Update Current Project**: If `[workspace]/.opencode/.current_project` contains `[source]`, update it to `[new-name]`.
 
 ### 6. Git Operation
 - Stage the rename: `git add -A`
