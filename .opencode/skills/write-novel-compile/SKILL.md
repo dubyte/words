@@ -6,7 +6,7 @@ Compile draft chapters into a formatted e-book (EPUB format) for reading, sharin
 ## Behavior
 
 ### 1. Directory Validation
-- Working directory must be: `/home/dubyte/Documents/Workspace/words/`
+- Working directory must be: `[workspace]/`
 - Check if project exists
 - Check if drafts exist (`/chapters/` has content)
 
@@ -151,8 +151,8 @@ pandoc \
   -o output.epub \
   title_page.md \
   dedication.md \
-  chapter_01.md \
-  chapter_02.md \
+  chapters/chapter_01/draft.md \
+  chapters/chapter_02/draft.md \
   ...
 ```
 
@@ -185,7 +185,7 @@ Useful for:
    Format: EPUB
 
 📁 File Location:
-   /home/dubyte/Documents/Workspace/words/[project]/exports/[filename]_PREVIEW.epub
+   [workspace]/[project]/exports/[filename]_PREVIEW.epub
 
 💡 This is a sample of your first 3 chapters.
    Perfect for testing formatting or sharing a teaser!
@@ -195,7 +195,7 @@ Useful for:
 
 ### 12. Output Location
 
-**Default:** `/home/dubyte/Documents/Workspace/words/[project-name]/exports/`
+**Default:** `[workspace]/[project-name]/exports/`
 
 **Filename format:** `[ProjectName]_v[version]_[date].epub`
 
@@ -245,7 +245,7 @@ Examples:
    Format: EPUB
 
 📁 File Location:
-   /home/dubyte/Documents/Workspace/words/[project]/exports/[filename].epub
+   [workspace]/[project]/exports/[filename].epub
 
 📝 Included:
    ✓ Title page

@@ -42,6 +42,8 @@ skill(name="write-novel-status")
 
 # Compile to e-book when ready
 skill(name="write-novel-compile")      # Generate EPUB to read or share
+```
+skill(name="write-novel-compile")      # Generate EPUB to read or share
 
 ---
 
@@ -245,7 +247,7 @@ MyNovel/
 │   ├── cover.jpg
 │   └── style.css
 └── appendix/
-└── appendix/
+    └── inspiration.md
     └── inspiration.md
 ```
 

@@ -9,7 +9,7 @@ Write chapter drafts with essential context and support, then optionally layer r
 ## Behavior
 
 ### 1. Directory Validation
-- Working directory must be: `/home/dubyte/Documents/Workspace/words/`
+- Working directory must be: `[workspace]/`
 
 ### 2. Project Selection
 1. **If project name provided**: Use that project
@@ -72,7 +72,7 @@ Generate context file with:
 - **Tone**: [Emotional atmosphere]
 ```
 
-**Step 3: Write the Draft** → `/chapters/chapter_NN_draft.md` (ESSENTIAL)
+**Step 3: Write the Draft** → `/chapters/chapter_NN/draft.md` (ESSENTIAL)
 
 Drafting mode options:
 1. **Free Write** - Just write, no interruptions

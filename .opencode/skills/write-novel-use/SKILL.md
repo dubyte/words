@@ -6,7 +6,7 @@ Select a project to work on so you don't have to specify it in every subsequent 
 ## Behavior
 
 ### 1. Directory Validation
-- Working directory must be: `/home/dubyte/Documents/Workspace/words/`
+- Working directory must be: `[workspace]/`
 
 ### 2. Project Selection (if no name provided)
 - List all projects in the words folder
@@ -18,14 +18,14 @@ Select a project to work on so you don't have to specify it in every subsequent 
 - If not: Error "Project '[name]' does not exist."
 
 ### 4. Storage
-- Store project name in: `/home/dubyte/Documents/Workspace/words/.opencode/.current_project`
+- Store project name in: `[workspace]/.opencode/.current_project`
 - Simple text file containing just the project name
 
 ### 5. Output
 ```
 ✅ Now using project: [project-name]
 
-📁 Location: /home/dubyte/Documents/Workspace/words/[project-name]/
+📁 Location: [workspace]/[project-name]/
 
 💡 Next skills will use this project automatically:
    skill(name="write-novel-foundations")  # Works on [project-name]
@@ -40,7 +40,7 @@ If `.current_project` file exists and user runs skill without args:
 ```
 📌 Currently using project: [project-name]
 
-📁 Location: /home/dubyte/Documents/Workspace/words/[project-name]/
+📁 Location: [workspace]/[project-name]/
 
 To switch: skill(name="write-novel-use", user_message="OtherProject")
 To stop:   skill(name="write-novel-unuse")
@@ -60,7 +60,7 @@ skill(name="write-novel-use")  # Shows current if already set
 ```
 
 ## Error Handling
-- Wrong directory: "Error: Must run from /home/dubyte/Documents/Workspace/words/"
+- Wrong directory: "Error: Must run from [workspace]/"
 - Project not found: "Error: Project '[name]' does not exist."
 - No projects: "No projects found. Create one with write-novel-init first."
 

@@ -6,7 +6,7 @@ Establish the high-level framework of the novel: genre, target audience, themes,
 ## Behavior
 
 ### 1. Directory Validation
-- Working directory must be: `/home/dubyte/Documents/Workspace/words/`
+- Working directory must be: `[workspace]/`
 - If not in correct directory: Error with message
 
 ### 2. Project Selection
@@ -96,7 +96,7 @@ skill(name="write-novel-foundations")
 ```
 
 ## Error Handling
-- Wrong directory: "Error: Must run from /home/dubyte/Documents/Workspace/words/"
+- Wrong directory: "Error: Must run from [workspace]/"
 - No projects: "No projects found. Run write-novel-init to create one."
 - Project not found: "Error: Project '[name]' does not exist."
 - Phase already complete: Offer to continue, overwrite, or cancel

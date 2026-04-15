@@ -6,7 +6,7 @@ Rename an existing novel project (especially useful for renaming auto-generated 
 ## Behavior
 
 ### 1. Directory Validation
-- Working directory must be: `/home/dubyte/Documents/Workspace/words/`
+- Working directory must be: `[workspace]/`
 - If not in correct directory: Error with message
 
 ### 2. Project Selection
@@ -17,6 +17,7 @@ Rename an existing novel project (especially useful for renaming auto-generated 
 
 ### 3. Arguments
 - **Source name** (optional): Current project name
+  - If not provided: Check for stored current project, or show list if none stored
   - If not provided: Show list of existing projects
 - **New name** (required): The new name for the project
   - Must not already exist
@@ -40,7 +41,7 @@ Rename an existing novel project (especially useful for renaming auto-generated 
 
 ### 7. Output
 - Success message: "✅ Project renamed from '[source]' to '[new-name]'"
-- Project path: "Location: /home/dubyte/Documents/Workspace/words/[new-name]/"
+- Project path: "Location: [workspace]/[new-name]/"
 
 ## Usage Examples
 
@@ -56,7 +57,7 @@ skill(name="write-novel-rename")
 ```
 
 ## Error Handling
-- Wrong directory: "Error: Must run from /home/dubyte/Documents/Workspace/words/"
+- Wrong directory: "Error: Must run from [workspace]/"
 - Source not found: "Error: Project '[source]' does not exist."
 - Target exists: "Error: Project '[new-name]' already exists. Choose a different name."
 - Empty new name: "Error: New project name cannot be empty."

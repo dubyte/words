@@ -9,7 +9,7 @@ Structure your story with essential plot points first, then optionally layer com
 ## Behavior
 
 ### 1. Directory Validation
-- Working directory must be: `/home/dubyte/Documents/Workspace/words/`
+- Working directory must be: `[workspace]/`
 
 ### 2. Project Selection
 1. **If project name provided**: Use that project
