@@ -320,6 +320,36 @@ MyNovel/
 
 ---
 
+## Prerequisites
+
+To compile e-books, you need `pandoc` installed on your system:
+
+**Arch Linux:**
+```bash
+sudo pacman -S pandoc
+```
+
+**Debian/Ubuntu:**
+```bash
+sudo apt-get install pandoc
+```
+
+**Fedora:**
+```bash
+sudo dnf install pandoc
+```
+
+**macOS:**
+```bash
+brew install pandoc
+```
+
+**Optional (for converting to other formats):**
+- `calibre` — for MOBI/AZW3/PDF conversion via `ebook-convert`
+- `texlive` — for PDF generation via pandoc
+
+---
+
 ## Getting Help
 
 - `skill(name="write-novel-status")` - See what phase you're on and what's optional vs essential
