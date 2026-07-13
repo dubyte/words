@@ -3,6 +3,9 @@
 ## Purpose
 Build out the novel's setting with essential foundations first, then optionally explore deeper world elements.
 
+## Writing Mode Note
+This phase works identically in both `author` and `co-writer` modes — the AI interviews and you answer. Mode only affects the drafting phase.
+
 ## Philosophy
 **Progressive Depth**: Start with what's essential for the story, add depth as needed. Everything optional can be added later.
 

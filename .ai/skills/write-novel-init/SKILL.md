@@ -65,9 +65,29 @@ Create the following structure in a **relative** folder `[project-name]/` (never
 
 **Note**: `history.md` is NOT created in Phase 1 as it's an optional Phase 3 element. `notes.md` is added as it's an essential world building element.
 
-...
+### 6. Writing Mode Selection (ESSENTIAL)
 
-### 6. .gitignore Template
+After creating the structure, ask the user to choose a writing mode:
+
+```
+📝 Choose your writing mode for [project-name]:
+
+A — author (You write, AI assists)
+  • You write all prose. AI interviews, organizes, tracks continuity.
+  • AI creates AGENTS.md context files to remind you of details.
+  • Best if: You enjoy writing and want a smart assistant.
+
+B — co-writer (AI writes, you direct)
+  • You give direction, constraints, and feedback.
+  • AI generates prose, scenes, and dialogue.
+  • Best if: You want to focus on story, not typing every sentence.
+
+💡 You can switch anytime with skill(name="write-novel-mode")
+```
+
+Write the choice to `metadata/writing_mode.md` (content is just `author` or `co-writer`).
+
+### 7. .gitignore Template
 Create `.gitignore` inside `[project-name]/` with:
 
 ```
@@ -78,12 +98,12 @@ Create `.gitignore` inside `[project-name]/` with:
 .DS_Store
 ```
 
-### 7. Git Commit
+### 8. Git Commit
 - Stage the new folder: `git add [project-name]/`
 - Commit from the repo root: `git commit -m "Initial commit: Project structure for '[project-name]'"`
 - **All paths in commands must be relative to the repo root. Never use absolute paths.**
 
-### 8. Auto-Select Option
+### 9. Auto-Select Option
 After successful creation, ask user:
 ```
 ✅ Project '[name]' created successfully!
@@ -96,7 +116,7 @@ After successful creation, ask user:
 
 If yes: Automatically run equivalent of `write-novel-use [name]`
 
-### 9. Output
+### 10. Output
 - Success message: "✅ Project '[name]' created successfully!"
 - Display relative project path and active branch
 - Next step: "Run `write-novel-foundations` to begin developing your novel's foundations."

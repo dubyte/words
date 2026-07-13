@@ -38,6 +38,19 @@ The workspace uses a tiered architecture where a high-level "Architect" orchestr
 ## Memory & Context
 **Skill Location:** All skills live in `.ai/skills/` and are referenced from there by the agent system.
 
+## Writing Modes (CRITICAL)
+
+Every novel operates in one of two modes, stored in `metadata/writing_mode.md`:
+
+- **`author`** (Option A) — **You write the prose.** The AI interviews, organizes, tracks continuity, creates context files, and cheers you on. You own every word in `draft.md`.
+- **`co-writer`** (Option B) — **The AI drafts prose.** You give direction, the AI generates scenes and chapters, you review and redirect. Both of you populate `draft.md`.
+
+### Rules
+1. **Mode is per-novel, not global.** Each project has its own mode file.
+2. **Mode is selectable at every session.** When you run any skill, it reads the current mode and asks: "Keep [author/co-writer] or switch?"
+3. **Mode only affects drafting behavior.** Planning phases (foundations, world, characters, plot) work the same in both modes — the AI interviews and you answer.
+4. **Switching is always allowed.** Run `skill(name="write-novel-mode")` anytime, or flip at the start of any session.
+
 ## Git & Folder Workflow (CRITICAL)
 
 Every novel is isolated in its own **Git branch** and matching **folder**.

@@ -3,6 +3,9 @@
 ## Purpose
 Structure your story with essential plot points first, then optionally layer complexity through subplots, scenes, and advanced techniques.
 
+## Writing Mode Note
+This phase works identically in both `author` and `co-writer` modes — the AI interviews and you answer. Mode only affects the drafting phase.
+
 ## Philosophy
 **Skeleton First, Muscles Later**: A story needs a clear beginning, middle, and end to function. Everything else adds richness but isn't required to start drafting.
 

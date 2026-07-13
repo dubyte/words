@@ -3,6 +3,9 @@
 ## Purpose
 Create essential character foundations first, then optionally explore deep psychology, relationships, and voice.
 
+## Writing Mode Note
+This phase works identically in both `author` and `co-writer` modes — the AI interviews and you answer. Mode only affects the drafting phase.
+
 ## Philosophy
 **Start Simple, Go Deep**: Every story needs a protagonist and antagonist with clear wants/needs. Everything else enhances but isn't required to start writing.
 

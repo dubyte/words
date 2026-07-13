@@ -29,16 +29,27 @@ Select a project to work on so you don't have to specify it in every subsequent 
   ```
 - **All subsequent file operations happen inside this folder, on this branch.**
 
-### 5. Storage
+### 5. Mode Check & Prompt
+- Read `metadata/writing_mode.md` (default to `author` if missing)
+- Display current mode and ask:
+  ```
+  📖 Writing Mode: [author / co-writer]
+  
+  Keep this mode? (yes / author / co-writer)
+  ```
+- If user chooses a different mode, write it to `metadata/writing_mode.md` and commit
+
+### 6. Storage
 - Store project name in: `.ai/.current_project` (relative to repo root)
 - Simple text file containing just the project name
 
-### 6. Output
+### 7. Output
 ```
 ✅ Now using project: [project-name]
 
 📁 Location: ./[project-name]/
 🌿 Branch: [project-name]
+📝 Mode: [author / co-writer]
 
 💡 Next skills will use this project automatically:
    skill(name="write-novel-foundations")  # Works on [project-name]
@@ -46,18 +57,21 @@ Select a project to work on so you don't have to specify it in every subsequent 
 
 📋 To check current project: skill(name="write-novel-use")
 🗑️  To stop using: skill(name="write-novel-unuse")
+🔄 To switch mode: skill(name="write-novel-mode")
 ```
 
-### 7. Show Current (if run without args)
+### 8. Show Current (if run without args)
 If `.current_project` file exists and user runs skill without args:
 ```
 📌 Currently using project: [project-name]
 
 📁 Location: ./[project-name]/
 🌿 Branch: [project-name]
+📝 Mode: [author / co-writer]
 
-To switch: skill(name="write-novel-use", user_message="other-project")
-To stop:   skill(name="write-novel-unuse")
+To switch:     skill(name="write-novel-use", user_message="other-project")
+To stop:       skill(name="write-novel-unuse")
+To switch mode: skill(name="write-novel-mode")
 ```
 
 ## Usage Examples

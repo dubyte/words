@@ -58,6 +58,30 @@ When you say *"continue with my-awesome-novel"*, the agent will:
 
 ---
 
+## Writing Modes
+
+Every novel has a **writing mode** that controls who writes the prose during drafting.
+
+### Mode A — `author` (You write, AI assists)
+- **You** write every word of `draft.md`
+- AI interviews, organizes, tracks continuity, creates context files
+- AI is your editor, continuity checker, and motivator
+- Best if: You enjoy writing prose and want a smart assistant
+
+### Mode B — `co-writer` (AI writes, you direct)
+- **You** give high-level direction, constraints, and feedback
+- **AI** generates prose, scenes, and dialogue
+- You review, edit, and redirect
+- Best if: You want to focus on story, not typing every sentence
+
+**Key points:**
+- Mode is **per-novel**, not global — each project stores its own mode in `metadata/writing_mode.md`
+- Mode is **selectable at every session** — when you continue, it asks "Keep [author/co-writer] or switch?"
+- Mode **only affects drafting** — planning phases (foundations, world, characters, plot) work the same in both modes
+- Switching is **always allowed** — run `skill(name="write-novel-mode")` anytime
+
+---
+
 ## All Available Skills
 
 ### Management Skills
@@ -69,6 +93,7 @@ When you say *"continue with my-awesome-novel"*, the agent will:
 | `write-novel-unuse` | **Stop using** a project (go back to explicit selection) |
 | `write-novel-rename` | Rename a project (especially for untitledN → real name) |
 | `write-novel-status` | Check status of all projects or current project |
+| `write-novel-mode` | Switch writing mode (`author` ↔ `co-writer`) |
 | `write-novel-archive` | **Archive** a project (move to archives folder) |
 
 ### Phase Skills (Progressive Depth)
@@ -287,7 +312,7 @@ MyNovel/
 - **Auto-naming**: Don't worry about the perfect name initially. Start with `write-novel-init` and rename later
 - **Check status**: Run `write-novel-status` anytime to see where you left off
 - **Git integrated**: Each novel is a branch; all novel work stays off `main`
-- **AI assistance**: Phase 6 (draft) creates AGENTS.md files with context to help AI write chapters
+- **Writing modes**: Choose `author` (you write, AI assists) or `co-writer` (AI writes, you direct) — switch anytime
 - **Return anytime**: Re-run any phase skill to add optional elements later
 - **Compile frequently**: Run `write-novel-compile` after each chapter to see your progress as a real book—great motivation!
 - **Use Preview Mode**: Compile just the first 3 chapters to test formatting without waiting for the full book

@@ -74,32 +74,84 @@ Generate context file with:
 
 **Step 3: Write the Draft** → `/chapters/chapter_NN/draft.md` (ESSENTIAL)
 
-Drafting mode options:
-1. **Free Write** - Just write, no interruptions
-2. **Guided** - Check in at key points (quarter marks)
-3. **Sprint Mode** - Timed writing sessions
+**Behavior depends on `metadata/writing_mode.md`:**
 
-**Minimum requirement**: Write the chapter. That's it.
+---
+
+**If mode = `author` (You write, AI assists):**
+
+The AI sets up the context, asks clarifying questions, then **steps back** while you write.
+
+1. Present the AGENTS.md context
+2. Ask: "Ready to write Chapter [N]? Any questions before you start?"
+3. When you finish writing: "Paste your draft or let me know when you're done."
+4. Offer: continuity check, tone feedback, or "next chapter?"
+
+Drafting mode options:
+1. **Free Write** - You write, AI stays quiet until you ask for help
+2. **Guided** - AI checks in at quarter marks with prompts
+3. **Sprint Mode** - Timed sessions, AI counts words and cheers
+
+**Minimum requirement**: You write the chapter. AI never generates prose unprompted.
+
+---
+
+**If mode = `co-writer` (AI writes, you direct):**
+
+The AI generates prose. You review, edit, and redirect.
+
+1. Present the AGENTS.md context
+2. Ask: "What should happen in this chapter? Any constraints?"
+3. AI generates a first draft of the chapter
+4. You review and say: "Good, but make the dialogue sharper" or "Rewrite scene 2 from her POV"
+5. Iterate until satisfied
+
+**Minimum requirement**: AI generates draft.md. You approve or revise.
+
+---
+
+💡 Switch modes anytime with `skill(name="write-novel-mode")`.
 
 ---
 
 #### **PHASE 6B: OPTIONAL WRITING TOOLS** (Enhancement Layer)
 
-After completing a chapter draft:
+After completing a chapter draft (behavior varies by mode):
+
+**If mode = `author`:**
 ```
 ✅ Chapter [N] Draft Complete!
 
-Words written: [count]
-Time spent: [if tracked]
+📊 Stats:
+   Words written: [count]
+   Time spent: [if tracked]
 
-Great job! What's next?
+Great job! You wrote this. What's next?
 
 1. Continue to next chapter
 2. Add scene breakdown (divide chapter into scenes)
 3. Add revision notes for later
-4. Create alternative draft (explore different direction)
-5. View writing analytics
-6. Take a break and check progress
+4. View writing analytics
+5. Take a break and check progress
+
+Your choice:
+```
+
+**If mode = `co-writer`:**
+```
+🤖 Chapter [N] Draft Generated!
+
+📊 Stats:
+   Words generated: [count]
+   Revision cycles: [N]
+
+What's next?
+
+1. ✅ Accept and continue to next chapter
+2. ✏️  Edit this chapter (you rewrite parts)
+3. 🔄 Ask AI to revise (give new direction)
+4. 📝 Add scene breakdown
+5. ⏸️  Take a break and check progress
 
 Your choice:
 ```
@@ -273,7 +325,9 @@ WRITING STATS:
 
 ### 8. Output
 
-**After First Chapter:**
+**After First Chapter (mode-aware):**
+
+*author mode:*
 ```
 ✅ Chapter [N] Drafted!
 
@@ -287,6 +341,26 @@ WRITING STATS:
 💡 Options:
    1. Keep momentum - draft next chapter
    2. Add optional tools (scenes, notes, analytics)
+   3. Take a break - your progress is saved
+   4. Check overall progress
+
+⏭️  Next: `write-novel-draft [project-name]` (continues to next chapter)
+```
+
+*co-writer mode:*
+```
+✅ Chapter [N] Drafted!
+
+📊 Stats:
+   Words: [count]
+   Chapter: [N] of [Total]
+   Progress: [X]% complete
+
+🤖 AI generated the draft. You reviewed and approved.
+
+💡 Options:
+   1. Keep momentum - draft next chapter
+   2. Edit this chapter before moving on
    3. Take a break - your progress is saved
    4. Check overall progress
 
@@ -315,11 +389,13 @@ WRITING STATS:
 ```
 
 **Mid-Draft Motivation:**
+
+*author mode:*
 ```
 📊 Drafting Progress: [X]% Complete
 
 Chapters drafted: [N] of [Total]
-Words written: [Count]
+Words written by you: [Count]
 
 🎯 You're [percentage] done!
 
@@ -327,6 +403,23 @@ Words written: [Count]
    - The middle is the hardest part
    - Momentum beats perfection
    - You can fix it in revision
+
+⏭️  Ready for Chapter [N+1]?
+```
+
+*co-writer mode:*
+```
+📊 Drafting Progress: [X]% Complete
+
+Chapters drafted: [N] of [Total]
+Words generated: [Count]
+
+🎯 You're [percentage] done!
+
+💪 Keep going!
+   - The middle is the hardest part
+   - Your direction shapes the story
+   - Revision polishes the prose
 
 ⏭️  Ready for Chapter [N+1]?
 ```

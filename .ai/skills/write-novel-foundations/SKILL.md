@@ -3,6 +3,9 @@
 ## Purpose
 Establish the high-level framework of the novel: genre, target audience, themes, and premise.
 
+## Writing Mode Note
+This phase works identically in both `author` and `co-writer` modes — the AI interviews and you answer. Mode only affects the drafting phase.
+
 ## Behavior
 
 ### 1. Directory Validation
