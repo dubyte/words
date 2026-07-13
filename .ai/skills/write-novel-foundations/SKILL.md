@@ -6,12 +6,12 @@ Establish the high-level framework of the novel: genre, target audience, themes,
 ## Behavior
 
 ### 1. Directory Validation
-- Working directory must be: `[workspace]/`
+- Working directory must be the repo root (where `.git/` lives)
 - If not in correct directory: Error with message
 
 ### 2. Project Selection
 1. **If project name provided** (via user_message): Use that project
-2. **If no project name**: Check for stored current project in `.opencode/.current_project`
+2. **If no project name**: Check for stored current project in `.ai/.current_project`
    - If stored project exists: Use stored project
    - If no stored project: List all projects, show numbered list, prompt for selection
 
@@ -96,7 +96,7 @@ skill(name="write-novel-foundations")
 ```
 
 ## Error Handling
-- Wrong directory: "Error: Must run from [workspace]/"
+- Wrong directory: "Error: Must run from the repository root"
 - No projects: "No projects found. Run write-novel-init to create one."
 - Project not found: "Error: Project '[name]' does not exist."
 - Phase already complete: Offer to continue, overwrite, or cancel

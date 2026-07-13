@@ -36,6 +36,25 @@ The workspace uses a tiered architecture where a high-level "Architect" orchestr
 4.  **Execution:** When drafting, **Novel Architect** provides the "Beat" or "Step" context, while `write-novel-draft` handles the file operations and prose.
 
 ## Memory & Context
-**Unified Skill System:** To ensure consistent behavior across different tools, the `.gemini/skills` directory is a **symlink** to `.opencode/skills`. This means that any new skill created or updated (like the `novel-architect`) is immediately and identically available to both the Gemini CLI and the OpenCode environment.
+**Skill Location:** All skills live in `.ai/skills/` and are referenced from there by the agent system.
+
+## Git & Folder Workflow (CRITICAL)
+
+Every novel is isolated in its own **Git branch** and matching **folder**.
+
+### Rules
+1. **Branch name == Folder name == kebab-case novel name**  
+   Example: novel *"The Moonlight Thief"* → branch `the-moonlight-thief` + folder `the-moonlight-thief/`.
+2. **Initialization (`write-novel-init`)**  
+   - Create the branch: `git checkout -b <kebab-name>`  
+   - Create the folder inside the repo root (relative path, never absolute).  
+   - All subsequent file operations happen inside that folder, on that branch.
+3. **Resuming / Continuing a novel**  
+   - When the user says *"continue with <name>"*, first run:  
+     `git checkout <kebab-name>` then `cd <kebab-name>/` (relative).  
+   - Never continue work on `main`.
+4. **No hardcoded absolute paths**  
+   - All paths must be relative to the repository root.  
+   - Never use `/home/...` or `[workspace]/` literals in file operations.
 
 Novel-specific state is persisted using `save_memory (scope="project")` with the prefix `novel_architect_`.

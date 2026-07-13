@@ -6,10 +6,10 @@ Stop using the currently selected project, returning to explicit project selecti
 ## Behavior
 
 ### 1. Directory Validation
-- Working directory must be: `[workspace]/`
+- Working directory must be the repo root (where `.git/` lives)
 
 ### 2. Check Current State
-- Check if `[workspace]/.opencode/.current_project` exists
+- Check if `./.ai/.current_project` exists
 - If exists: Read and display the project name before clearing
 - If not exists: Inform user no project was selected
 
@@ -44,7 +44,7 @@ skill(name="write-novel-unuse")
 ```
 
 ## Error Handling
-- Wrong directory: "Error: Must run from [workspace]/"
+- Wrong directory: "Error: Must run from the repository root"
 
 ## Notes
 - Simple operation - just removes the stored project file

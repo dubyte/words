@@ -9,11 +9,11 @@ Create essential character foundations first, then optionally explore deep psych
 ## Behavior
 
 ### 1. Directory Validation
-- Working directory must be: `[workspace]/`
+- Working directory must be the repo root (where `.git/` lives)
 
 ### 2. Project Selection
 1. **If project name provided**: Use that project
-2. **If no project name**: Check for stored current project in `.opencode/.current_project`
+2. **If no project name**: Check for stored current project in `.ai/.current_project`
    - If stored project exists: Use stored project
    - If no stored project: List all projects, show numbered list, prompt for selection
 
@@ -243,7 +243,7 @@ For each POV character:
 
 ### 6. Session Management
 
-**Progress Tracking** → `.opencode/characters_progress_[project].md`
+**Progress Tracking** → `.ai/characters_progress_[project].md`
 ```
 [Project Name] - Character Development Progress
 Last Updated: [Date]

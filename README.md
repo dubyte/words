@@ -20,14 +20,23 @@ These skills are designed to be **flexible**—you can write a complete novel wi
 
 ---
 
-## Quick Start
+## Git & Folder Workflow
+
+Every novel lives in its own **Git branch** and matching **folder**, both named with **kebab-case**.
+
+- Novel: *"The Moonlight Thief"* → branch `the-moonlight-thief` + folder `the-moonlight-thief/`
+- All work for a novel happens **only** on its branch and inside its folder
+- Never commit novel files to `main`
+
+### Start a New Novel
 
 ```bash
 # 1. Create a new novel project
-skill(name="write-novel-init", user_message="MyAwesomeNovel")
+#    This automatically creates the branch and folder
+skill(name="write-novel-init", user_message="my-awesome-novel")
 
 # 2. Select it for easy access
-skill(name="write-novel-use", user_message="MyAwesomeNovel")
+skill(name="write-novel-use", user_message="my-awesome-novel")
 
 # 3. Work through the phases (essentials first, go deep if you want)
 skill(name="write-novel-foundations")  # Genre, themes, logline
@@ -36,14 +45,16 @@ skill(name="write-novel-characters")   # Characters (essentials → optional fra
 skill(name="write-novel-plot")         # Plot (essentials → optional complexity)
 skill(name="write-novel-draft")        # Write chapters (essentials → optional tools)
 
-
-# Check progress anytime
-skill(name="write-novel-status")
-
-# Compile to e-book when ready
+# 4. Compile to e-book when ready
 skill(name="write-novel-compile")      # Generate EPUB to read or share
 ```
-skill(name="write-novel-compile")      # Generate EPUB to read or share
+
+### Continue an Existing Novel
+
+When you say *"continue with my-awesome-novel"*, the agent will:
+1. `git checkout my-awesome-novel`
+2. `cd my-awesome-novel/`
+3. Resume work where you left off
 
 ---
 
@@ -111,7 +122,7 @@ Your choice:
 
 ### Progress Tracking
 
-Each skill tracks your progress in `.opencode/[phase]_progress_[project].md`:
+Each skill tracks your progress in `.ai/[phase]_progress_[project].md`:
 
 ```
 MyNovel - World Building Progress
@@ -249,7 +260,6 @@ MyNovel/
 │   └── style.css
 └── appendix/
     └── inspiration.md
-    └── inspiration.md
 ```
 
 ---
@@ -272,10 +282,11 @@ MyNovel/
 - Use revision notes instead of detailed outlining
 
 ### For Everyone
-- **Multiple novels**: Create many projects, use `write-novel-use` to switch
+- **Multiple novels**: Create many projects. Each gets its own git branch + folder (same kebab-case name)
+- **Switch novels**: `write-novel-use` checks out the branch and cds into the folder automatically
 - **Auto-naming**: Don't worry about the perfect name initially. Start with `write-novel-init` and rename later
 - **Check status**: Run `write-novel-status` anytime to see where you left off
-- **Git integrated**: Every change is automatically committed
+- **Git integrated**: Each novel is a branch; all novel work stays off `main`
 - **AI assistance**: Phase 6 (draft) creates AGENTS.md files with context to help AI write chapters
 - **Return anytime**: Re-run any phase skill to add optional elements later
 - **Compile frequently**: Run `write-novel-compile` after each chapter to see your progress as a real book—great motivation!
@@ -284,25 +295,13 @@ MyNovel/
 
 ---
 
-## Technical Note: Skill Symlinking
-
-The skills in this repository are symlinked for development convenience:
-- Primary location: `.gemini/skills/`
-- Symlink: `.opencode/skills/`
-
-This allows you to work on the skills in either location and have changes reflected immediately in both.
-
----
-
-
 ## Getting Help
 
 - `skill(name="write-novel-status")` - See what phase you're on and what's optional vs essential
 - `skill(name="write-novel-use")` - Shows which project is currently selected
 - `skill(name="write-novel-world")` (or any phase) - Shows your progress and available optional elements
 - `skill(name="write-novel-compile")` - Compile your draft chapters into a readable EPUB e-book
-
-- Each skill has its own detailed SKILL.md in `.opencode/skills/[skill-name]/`
+- Each skill has its own detailed SKILL.md in `.ai/skills/[skill-name]/`
 
 ---
 

@@ -54,3 +54,7 @@ personal-todo.md
 # **/assets/*.mp3
 # **/assets/*.wav
 # **/assets/*.mp4
+
+# Auto-created by opencode-ai/plugin (removed from package.json)
+.opencode/
+.omo/

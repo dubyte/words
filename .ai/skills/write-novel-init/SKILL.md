@@ -19,15 +19,23 @@ Initialize a new novel project with complete directory structure and Git reposit
 - Allow: alphanumeric characters, hyphens, underscores
 - If invalid: Error "'[name]' is not a valid project name. Use alphanumeric characters, hyphens, or underscores."
 
-### 3. Directory Validation
-- Working directory must be: `[workspace]/`
-- If not in correct directory: Error with message
-- Check if project name already exists:
+### 3. Directory & Git Validation
+- Working directory must be the repo root (where `.git/` lives)
+- Check if a Git branch named `[project-name]` already exists:
+  - If exists: Error "Branch '[name]' already exists. Use `write-novel-use` to continue or pick a different name."
+- Check if project folder `[project-name]/` already exists:
   - If exists: Error "Project '[name]' already exists. Choose a different name or use write-novel-rename."
-  - If not exists: Proceed
+- If not exists: Proceed
 
-### 4. Project Structure Creation
-Create the following structure in `[workspace]/[project-name]/`:
+### 4. Git Branch Creation
+- Create and check out a new branch named exactly `[project-name]`:
+  ```bash
+  git checkout -b [project-name]
+  ```
+- **All subsequent work for this novel happens on this branch.**
+
+### 5. Project Structure Creation
+Create the following structure in a **relative** folder `[project-name]/` (never use absolute paths):
 
 ```
 [project-name]/
@@ -59,51 +67,29 @@ Create the following structure in `[workspace]/[project-name]/`:
 
 ...
 
-### 7. Git Initialization
-- Check if `[workspace]/.git` exists.
-  - If it exists: Just run `git add [project-name]` from workspace root.
-  - If not exists: Run `git init` in project directory, then `git add .` and initial commit.
-- Initial commit: "Initial commit: Project structure for '[project-name]'"
-
-**Created**: [Date]
-**Current Phase**: Phase 1: Project Setup Complete
-**Next Step**: Run `write-novel-foundations` to begin Phase 2
-
-## TODO
-
-- [ ] Phase 2: Foundational Concepts (genre, themes, logline)
-- [ ] Phase 3: World Building
-- [ ] Phase 4: Character Development
-- [ ] Phase 5: Plot & Structure
-- [ ] Phase 6: Drafting
-
-## Progress Log
-
-- [Date]: Project initialized
-```
-
 ### 6. .gitignore Template
-Create .gitignore with:
+Create `.gitignore` inside `[project-name]/` with:
 
 ```
 # Novel project meta files
-.opencode/.current_project
+.ai/.current_project
 *.tmp
 *.bak
 .DS_Store
 ```
 
-### 7. Git Initialization
-- Run `git init` in project directory
-- Stage all files: `git add .`
-- Create initial commit: "Initial commit: Project structure created"
+### 7. Git Commit
+- Stage the new folder: `git add [project-name]/`
+- Commit from the repo root: `git commit -m "Initial commit: Project structure for '[project-name]'"`
+- **All paths in commands must be relative to the repo root. Never use absolute paths.**
 
 ### 8. Auto-Select Option
 After successful creation, ask user:
 ```
 ✅ Project '[name]' created successfully!
 
-📁 Location: [workspace]/[project-name]/
+📁 Location: ./[project-name]/
+🌿 Branch: [project-name]
 
 ❓ Set '[name]' as current project? (y/n)
 ```
@@ -112,28 +98,30 @@ If yes: Automatically run equivalent of `write-novel-use [name]`
 
 ### 9. Output
 - Success message: "✅ Project '[name]' created successfully!"
-- Display project path
+- Display relative project path and active branch
 - Next step: "Run `write-novel-foundations` to begin developing your novel's foundations."
 - If auto-selected: "This project is now set as current. You can run skills without specifying the project name."
 
 ## Usage Examples
 
 ```bash
-# With specific name
-skill(name="write-novel-init", user_message="MyFantasyNovel")
+# With specific kebab-case name
+skill(name="write-novel-init", user_message="my-fantasy-novel")
+# Creates branch my-fantasy-novel, folder ./my-fantasy-novel/
 
-# Auto-generate untitled name
+# Auto-generate untitled name (also kebab-case)
 skill(name="write-novel-init")
-# Result: Creates "untitled3" (if untitled1 and untitled2 exist)
+# Result: Creates branch "untitled-3", folder ./untitled-3/ (if untitled-1/2 exist)
 ```
 
 ## Error Handling
-- Wrong directory: "Error: Must run from [workspace]/"
+- Wrong directory: "Error: Must run from the repository root (where .git/ is located)."
 - Invalid project name: "Error: '[name]' is not a valid project name. Use alphanumeric characters, hyphens, or underscores."
 - Reserved name: "Error: '[name]' is a reserved system name. Choose a different name."
-- Duplicate name: "Error: Project '[name]' already exists. Choose a different name or use write-novel-rename."
-- Git init failed: "⚠️  Warning: Git initialization failed. Project created but not version controlled."
-- Git commit failed: "⚠️  Warning: Initial commit failed. Files are staged but not committed."
+- Duplicate folder: "Error: Project '[name]' already exists. Choose a different name or use write-novel-rename."
+- Duplicate branch: "Error: Branch '[name]' already exists. Use `write-novel-use` to continue or pick a different name."
+- Git branch creation failed: "⚠️ Warning: Git branch creation failed. Project not created."
+- Git commit failed: "⚠️ Warning: Initial commit failed. Files are staged but not committed."
 
 ## Dependencies
 - Requires `git` to be installed

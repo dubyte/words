@@ -6,27 +6,27 @@ Check the status of all novel projects or a specific project, showing current ph
 ## Behavior
 
 ### 1. Directory Validation
-- Working directory must be: `[workspace]/`
+- Working directory must be the repo root (where `.git/` lives)
 - If not in correct directory: Error with message
 
 ### 2. Project Selection
 1. **If project name provided**: Show detailed status for that project
-2. **If no project name**: Check for stored current project in `.opencode/.current_project`
+2. **If no project name**: Check for stored current project in `.ai/.current_project`
    - If stored project exists: Show detailed status for stored project
    - If no stored project: Show overview of all projects
 For each project, determine current phase by checking file contents:
 
 **Phase Detection & Deep Status:**
-For each project, check file existence and read `.opencode/[phase]_progress_[project].md` if available:
+For each project, check file existence and read `.ai/[phase]_progress_[project].md` if available:
 
 - **Phase 1 (Setup)**: Project directory exists.
 - **Phase 2 (Foundations)**: Check `/metadata/genre.md`.
-- **Phase 3 (World Building)**: Check `/world/overview.md` and `.opencode/world_progress_[project].md`.
+- **Phase 3 (World Building)**: Check `/world/overview.md` and `.ai/world_progress_[project].md`.
   - Report: "Essentials [X/4] | Optional [Y/8]"
-- **Phase 4 (Characters)**: Check `/characters/protagonist.md` and `.opencode/character_progress_[project].md`.
+- **Phase 4 (Characters)**: Check `/characters/protagonist.md` and `.ai/character_progress_[project].md`.
   - Report: "Essentials [X/3] | Optional [Y/8]"
-- **Phase 5 (Plot)**: Check `/plot/chapter_outlines/` and `.opencode/plot_progress_[project].md`.
-- **Phase 6 (Drafting)**: Check `/chapters/` and `.opencode/drafting_progress_[project].md`.
+- **Phase 5 (Plot)**: Check `/plot/chapter_outlines/` and `.ai/plot_progress_[project].md`.
+- **Phase 6 (Drafting)**: Check `/chapters/` and `.ai/drafting_progress_[project].md`.
 
 ### 3. Project Status Display
 
@@ -90,7 +90,7 @@ skill(name="write-novel-status", user_message="MyFantasyNovel")
 ```
 
 ## Error Handling
-- Wrong directory: "Error: Must run from [workspace]/"
+- Wrong directory: "Error: Must run from the repository root"
 - Project not found: "Error: Project '[name]' does not exist."
 
 ## Output Format

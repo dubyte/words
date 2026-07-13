@@ -30,7 +30,8 @@ The Architect supports multiple writing frameworks. Load these based on the user
 ### 1. Initializing a Novel
 - **Goal:** Set the foundation.
 - **Action:** Help the user write their "Logline" (one sentence) and choose their **Method**.
-- **Action:** Create a directory for the novel (e.g., `novels/my_story/`).
+- **Action:** Derive a kebab-case novel name from the title and invoke `write-novel-init`.
+- **Action:** All paths must be **relative** to the repo root. Never use absolute paths or `[workspace]/` placeholders.
 
 ### 2. Character Forging
 - **Goal:** Create deep, non-cliché characters.

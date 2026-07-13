@@ -9,11 +9,11 @@ Build out the novel's setting with essential foundations first, then optionally 
 ## Behavior
 
 ### 1. Directory Validation
-- Working directory must be: `[workspace]/`
+- Working directory must be the repo root (where `.git/` lives)
 
 ### 2. Project Selection
 1. **If project name provided**: Use that project
-2. **If no project name**: Check for stored current project in `.opencode/.current_project`
+2. **If no project name**: Check for stored current project in `.ai/.current_project`
    - If stored project exists: Use stored project
    - If no stored project: List all projects, show numbered list, prompt for selection
 
@@ -138,7 +138,7 @@ For each major culture:
 **During any session:**
 - Can complete multiple optional elements
 - Can skip any element and return later
-- Skill tracks what's been created in `.opencode/world_progress_[project].md`
+- Skill tracks what's been created in `.ai/world_progress_[project].md`
 
 **Tracking File Format:**
 ```
@@ -276,7 +276,7 @@ world/
 ```
 
 ## Error Handling
-- Wrong directory: "Error: Must run from [workspace]/"
+- Wrong directory: "Error: Must run from the repository root"
 - Phase 2 incomplete: "Complete Phase 2 first with write-novel-foundations"
 - No progress file issues: Create new, don't error
 

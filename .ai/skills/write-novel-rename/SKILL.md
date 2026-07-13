@@ -6,12 +6,12 @@ Rename an existing novel project (especially useful for renaming auto-generated 
 ## Behavior
 
 ### 1. Directory Validation
-- Working directory must be: `[workspace]/`
+- Working directory must be the repo root (where `.git/` lives)
 - If not in correct directory: Error with message
 
 ### 2. Project Selection
 1. **If source name provided**: Use that project
-2. **If no source name**: Check for stored current project in `.opencode/.current_project`
+2. **If no source name**: Check for stored current project in `.ai/.current_project`
    - If stored project exists: Use stored project
    - If no stored project: List all projects, show numbered list, prompt for selection
 
@@ -34,7 +34,7 @@ Rename an existing novel project (especially useful for renaming auto-generated 
 - Rename the directory from `[source]` to `[new-name]`
 - Update any internal references (if applicable)
 - Update README.md title if it contains the old name
-- **Update Current Project**: If `[workspace]/.opencode/.current_project` contains `[source]`, update it to `[new-name]`.
+- **Update Current Project**: If `./.ai/.current_project` contains `[source]`, update it to `[new-name]`.
 
 ### 6. Git Operation
 - Stage the rename: `git add -A`
@@ -42,7 +42,7 @@ Rename an existing novel project (especially useful for renaming auto-generated 
 
 ### 7. Output
 - Success message: "✅ Project renamed from '[source]' to '[new-name]'"
-- Project path: "Location: [workspace]/[new-name]/"
+- Project path: "Location: ./[new-name]/"
 
 ## Usage Examples
 
@@ -58,7 +58,7 @@ skill(name="write-novel-rename")
 ```
 
 ## Error Handling
-- Wrong directory: "Error: Must run from [workspace]/"
+- Wrong directory: "Error: Must run from the repository root"
 - Source not found: "Error: Project '[source]' does not exist."
 - Target exists: "Error: Project '[new-name]' already exists. Choose a different name."
 - Empty new name: "Error: New project name cannot be empty."

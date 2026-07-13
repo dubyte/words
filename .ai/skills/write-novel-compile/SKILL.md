@@ -6,13 +6,13 @@ Compile draft chapters into a formatted e-book (EPUB format) for reading, sharin
 ## Behavior
 
 ### 1. Directory Validation
-- Working directory must be: `[workspace]/`
+- Working directory must be the repo root (where `.git/` lives)
 - Check if project exists
 - Check if drafts exist (`/chapters/` has content)
 
 ### 2. Project Selection
 1. **If project name provided**: Use that project
-2. **If no project name**: Check for stored current project in `.opencode/.current_project`
+2. **If no project name**: Check for stored current project in `.ai/.current_project`
    - If stored project exists: Use stored project
    - If no stored project: List all projects, show numbered list, prompt for selection
 
@@ -185,7 +185,7 @@ Useful for:
    Format: EPUB
 
 📁 File Location:
-   [workspace]/[project]/exports/[filename]_PREVIEW.epub
+   ./[project]/exports/[filename]_PREVIEW.epub
 
 💡 This is a sample of your first 3 chapters.
    Perfect for testing formatting or sharing a teaser!
@@ -195,7 +195,7 @@ Useful for:
 
 ### 12. Output Location
 
-**Default:** `[workspace]/[project-name]/exports/`
+**Default:** `./[project-name]/exports/`
 
 **Filename format:** `[ProjectName]_v[version]_[date].epub`
 
@@ -207,7 +207,7 @@ Examples:
 
 ### 13. Version Tracking
 
-**Track compilations in:** `.opencode/compile_history_[project].md`
+**Track compilations in:** `.ai/compile_history_[project].md`
 
 ```
 [Project Name] - Compile History
@@ -245,7 +245,7 @@ Examples:
    Format: EPUB
 
 📁 File Location:
-   [workspace]/[project]/exports/[filename].epub
+   ./[project]/exports/[filename].epub
 
 📝 Included:
    ✓ Title page
