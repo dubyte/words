@@ -448,15 +448,18 @@ brew install pandoc
 
 **Optional (for converting to other formats):**
 - `calibre` (for MOBI/AZW3/PDF conversion via ebook-convert)
+  - Arch: `sudo pacman -S calibre`
   - Debian/Ubuntu: `sudo apt-get install calibre`
   - Fedora: `sudo dnf install calibre`
 - `texlive` (for PDF generation via pandoc)
+  - Arch: `sudo pacman -S texlive-latexrecommended`
+  - Arch (comprehensive): `sudo pacman -S texlive-latexrecommended texlive-latexextra`
   - Debian/Ubuntu: `sudo apt-get install texlive-latex-base`
   - Fedora: `sudo dnf install texlive-scheme-basic`
 
 ## Error Handling
 
-- No pandoc: "Error: pandoc not installed. Install with: sudo apt-get install pandoc (Debian/Ubuntu) or sudo dnf install pandoc (Fedora)"
+- No pandoc: "Error: pandoc not installed. Install with: sudo pacman -S pandoc (Arch) or sudo apt-get install pandoc (Debian/Ubuntu) or sudo dnf install pandoc (Fedora)"
 - No drafts: "Error: No draft chapters found in /chapters/"
 - No project: "Error: Project '[name]' does not exist"
 - Cover image not found: "Warning: No cover image found. Compiling without cover."

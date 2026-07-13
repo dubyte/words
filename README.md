@@ -346,7 +346,10 @@ brew install pandoc
 
 **Optional (for converting to other formats):**
 - `calibre` — for MOBI/AZW3/PDF conversion via `ebook-convert`
+  - Arch: `sudo pacman -S calibre`
 - `texlive` — for PDF generation via pandoc
+  - Arch: `sudo pacman -S texlive-latexrecommended` (covers most needs)
+  - Arch (comprehensive): `sudo pacman -S texlive-latexrecommended texlive-latexextra`
 
 ---
 
