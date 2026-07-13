@@ -6,11 +6,8 @@ Initialize a new novel project with complete directory structure and Git reposit
 ## Behavior
 
 ### 1. Project Name Resolution
-- If user provides a name: Use it (e.g., "MyFantasyNovel")
-- If no name provided: Auto-generate "untitledN" where N is the next available number
-  - Check existing directories for "untitled1", "untitled2", etc.
-  - Use the next available number
-  - Example: If untitled1 and untitled2 exist, create untitled3
+- If user provides a name: Use it (e.g., "my-fantasy-novel")
+- If no name provided: **Prompt the user for the project name.** Do not auto-generate a name. Wait for the user to provide a valid project name (in kebab-case) before proceeding.
 
 ### 2. Project Name Validation
 - Name must be a valid directory name
@@ -43,7 +40,9 @@ Create the following structure in a **relative** folder `[project-name]/` (never
 ├── metadata/
 │   ├── genre.md           # (empty initially)
 │   ├── target_audience.md # (empty initially)
-│   └── themes.md          # (empty initially)
+│   ├── themes.md          # (empty initially)
+│   ├── language.md        # (empty initially)
+│   └── author.md          # (empty initially)
 ├── world/
 │   ├── overview.md        # (empty initially)
 │   ├── geography.md       # (empty initially)
@@ -65,7 +64,7 @@ Create the following structure in a **relative** folder `[project-name]/` (never
 
 **Note**: `history.md` is NOT created in Phase 1 as it's an optional Phase 3 element. `notes.md` is added as it's an essential world building element.
 
-### 6. Writing Mode Selection (ESSENTIAL)
+### 6. Mode, Language, and Author Selection (ESSENTIAL)
 
 After creating the structure, ask the user to choose a writing mode:
 
@@ -86,6 +85,25 @@ B — co-writer (AI writes, you direct)
 ```
 
 Write the choice to `metadata/writing_mode.md` (content is just `author` or `co-writer`).
+
+Next, ask the user to specify the language and region for the project:
+
+```
+🌍 What language and region will this novel be written in?
+Examples: English (US), English (UK), Spanish (MX), Spanish (Spain), etc.
+```
+
+Write the choice to `metadata/language.md`.
+
+**CRITICAL RULE FOR ALL SKILLS**: Once the language is locked in `metadata/language.md`, all drafted prose and generated content MUST be written in that language. However, the filenames and folder structure (e.g., `characters/`, `world/`, `metadata/`) MUST remain in English so they do not interfere with the skills or system functionality.
+
+Finally, ask the user for the author's name:
+
+```
+✍️  What is the author's name for this novel?
+```
+
+Write the name to `metadata/author.md`.
 
 ### 7. .gitignore Template
 Create `.gitignore` inside `[project-name]/` with:
@@ -129,9 +147,9 @@ If yes: Automatically run equivalent of `write-novel-use [name]`
 skill(name="write-novel-init", user_message="my-fantasy-novel")
 # Creates branch my-fantasy-novel, folder ./my-fantasy-novel/
 
-# Auto-generate untitled name (also kebab-case)
+# Without name
 skill(name="write-novel-init")
-# Result: Creates branch "untitled-3", folder ./untitled-3/ (if untitled-1/2 exist)
+# Result: Agent prompts user: "What would you like to name your novel project (in kebab-case)?"
 ```
 
 ## Error Handling
