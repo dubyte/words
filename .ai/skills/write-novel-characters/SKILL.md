@@ -72,7 +72,7 @@ Go deeper? Choose optional elements:
 1. Protagonist Deep Dive (appearance, backstory, voice)
 2. Antagonist Deep Dive (full profile, backstory, complexity)
 3. Detailed Side Characters (full profiles for key cast)
-4. Personality Frameworks (Enneagram, MBTI for main characters)
+4. Personality Frameworks (Enneagram, MBTI, OCEAN for main characters)
 5. Character Arc Mapping (detailed transformation steps)
 6. Relationship Webs (map all character connections)
 7. Character Voice & POV (how each character speaks/thinks)
@@ -112,7 +112,8 @@ For each key side character:
 **4. Personality Frameworks** → `/characters/personality_frameworks.md` (OPTIONAL)
 - Enneagram types (1-9) for main characters
 - MBTI types (16 personalities)
-- Why these types fit the character
+- OCEAN traits (Openness, Conscientiousness, Extraversion, Agreeableness, Neuroticism)
+- Why these types/traits fit the character
 - Growth paths for each type
 
 **5. Character Arc Mapping** → `/characters/arc_mapping.md` (OPTIONAL)
@@ -194,6 +195,7 @@ For each POV character:
 ## Psychology
 - **Enneagram Type**: [Type] - [Description]
 - **MBTI Type**: [Type] - [Description]
+- **OCEAN Traits**: [High/Med/Low for O, C, E, A, N]
 - **Core Fear**: 
 - **Core Desire**: 
 - **Core Beliefs**: 
