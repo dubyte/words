@@ -21,7 +21,6 @@ This is a novel-writing skills workspace — no build system, no tests, no linti
 - `.ai/skills/` — all OpenCode skill definitions (SKILL.md + resources per skill)
 - `.ai/.current_project` — which novel is currently selected
 - `.gitignore` — excludes `.opencode/`, `.omo/`, compiled e-books (`**/exports/*.epub` etc.)
-- `.gitlab-ci.yml` — secret detection only; no build, test, or lint pipeline
 
 ## Prerequisites
 
