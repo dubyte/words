@@ -74,6 +74,12 @@ Every novel has a **writing mode** that controls who writes the prose during dra
 - You review, edit, and redirect
 - Best if: You want to focus on story, not typing every sentence
 
+### Mode C — `synthfic` (AI writes autonomously)
+- **You** set up the detailed outline, rules, and world data
+- **AI** writes chapter after chapter autonomously in batches
+- AI automatically maintains the JSON tracker and continuity
+- Best if: You want to produce large amounts of text using predefined lore
+
 **Key points:**
 - Mode is **per-novel**, not global — each project stores its own mode in `metadata/writing_mode.md`
 - Mode is **selectable at every session** — when you continue, it asks "Keep [author/co-writer] or switch?"
@@ -105,7 +111,11 @@ Every novel has a **writing mode** that controls who writes the prose during dra
 | `write-novel-characters` | Protagonist/antagonist core (want/need/flaw), key cast list | Full profiles, Enneagram/MBTI, arc mapping, relationship webs, voice & POV |
 | `write-novel-plot` | Choose structure, 7 key plot points, basic chapter breakdown | Complete beat sheets, detailed outlines, subplots, scene breakdowns, foreshadowing, pacing analysis |
 
+| `write-novel-rag` | (Pre-drafting) Dynamic retrieval of lore/characters | Ensures context accuracy before drafting a chapter |
 | `write-novel-draft` | AGENTS.md context, write chapter draft | Scene breakdowns, revision notes, alternative drafts, writing analytics, deep context |
+| `write-novel-review` | Global consistency check via tracker summaries | Deep prose review utilizing multiple subagents for batches of chapters |
+| `write-novel-revise` | Safe, top-down cascading plot updates | Flags tracker and auto-rewrites affected chapters based on metadata changes |
+| `write-novel-fork` | Create Git branches for narrative choices | Alternate timelines and "What if?" scenarios without breaking the main story |
 | `write-novel-compile` | Compile chapters into EPUB e-book | Preview mode (first 3 chapters), custom ranges, styling, front/back matter, convert to MOBI/PDF |
 
 ---
@@ -236,7 +246,8 @@ MyNovel/
 ├── metadata/
 │   ├── genre.md
 │   ├── target_audience.md
-│   └── themes.md
+│   ├── themes.md
+│   └── banned_tropes.md      # Anti-AI cliché rules
 ├── world/                  # Essentials + Optional
 │   ├── overview.md         # Essential
 │   ├── geography.md        # Essential
@@ -260,6 +271,7 @@ MyNovel/
 ├── plot/                   # Essentials + Optional
 │   ├── [structure]_basic.md     # Essential
 │   ├── [structure]_detailed.md  # Optional
+│   ├── database.json            # JSON backend for continuity
 │   ├── chapter_outlines/
 │   │   ├── overview.md          # Essential
 │   │   ├── chapter_01_detailed.md  # Optional
