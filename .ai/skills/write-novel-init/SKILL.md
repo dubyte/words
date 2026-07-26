@@ -42,7 +42,8 @@ Create the following structure in a **relative** folder `[project-name]/` (never
 │   ├── target_audience.md # (empty initially)
 │   ├── themes.md          # (empty initially)
 │   ├── language.md        # (empty initially)
-│   └── author.md          # (empty initially)
+│   ├── author.md          # (empty initially)
+│   └── banned_tropes.md   # Rules for avoiding AI clichés
 ├── world/
 │   ├── overview.md        # (empty initially)
 │   ├── geography.md       # (empty initially)
@@ -56,6 +57,7 @@ Create the following structure in a **relative** folder `[project-name]/` (never
 │   └── side/              # (directory for side characters)
 ├── plot/
 │   ├── high_level_summary.md     # (empty initially)
+│   ├── database.json      # Structured JSON version of continuity tracker
 │   └── chapter_outlines/  # (directory)
 ├── chapters/              # (directory for drafts)
 └── appendix/

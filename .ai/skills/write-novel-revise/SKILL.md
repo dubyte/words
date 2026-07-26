@@ -26,10 +26,10 @@ Manage plot changes safely by updating the "brain" of the project (outlines and 
 - Identifica qué capítulos se ven directamente afectados por el cambio.
 - Modifica `plot/chapter_outlines/chapter_XX_detailed.md` para cada capítulo afectado, reflejando la nueva secuencia de eventos.
 
-#### Step 3: Flag the Continuity Tracker
-- Abre `plot/continuity_tracker.md`.
+#### Step 3: Flag the Continuity Tracker & Database
+- Abre `plot/continuity_tracker.md` y `plot/database.json`.
 - Para cada capítulo afectado, cambia su estado de `(Redactado)` a `(Requiere reescritura)`.
-- Actualiza el texto del resumen en el rastreador para que coincida con la nueva trama.
+- Actualiza el texto del resumen en el rastreador y en el JSON para que coincida con la nueva trama.
 
 #### Step 4: Execute the Rewrite
 - Itera a través de los capítulos marcados como `(Requiere reescritura)`.

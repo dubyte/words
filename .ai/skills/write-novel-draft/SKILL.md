@@ -52,6 +52,8 @@ Your choice:
 
 **Step 2: Essential Context** → Create `/chapters/chapter_NN/AGENTS.md` (ESSENTIAL)
 
+*Pre-requisite*: Execute a semantic search (via `write-novel-rag` methodology) for the characters and locations in this chapter within `/world/` and `/characters/` to inject precise lore.
+
 Generate context file with:
 ```markdown
 # Chapter [N] Context
@@ -70,7 +72,7 @@ Generate context file with:
 - **Opening Hook**: [How to start with impact]
 - **Ending Hook**: [What to leave reader wondering]
 - **Tone**: [Emotional atmosphere]
-- **Style & Length**: [Read `metadata/style_guide.md` if it exists. Inherit the target word count (e.g. 2600 words) and stylistic rules to ensure long, deep chapters]
+- **Style & Length**: [Read `metadata/style_guide.md` and `metadata/banned_tropes.md` if they exist. Inherit the target word count and stylistic anti-AI rules to ensure deep, human-like chapters]
 ```
 
 **Step 3: Write the Draft** → `/chapters/chapter_NN/draft.md` (ESSENTIAL)
@@ -115,10 +117,10 @@ The AI generates prose. You review, edit, and redirect.
 
 The AI generates prose autonomously without stopping for each chapter, relying purely on the established data.
 
-1. AI reads the high-level outline and continuity tracker.
-2. AI automatically generates the AGENTS.md context for the current chapter.
+1. AI reads the high-level outline and continuity tracker (or `database.json`).
+2. AI automatically performs RAG retrieval for the entities in the chapter and generates the AGENTS.md context.
 3. AI generates the draft.md for the chapter.
-4. AI updates the continuity tracker with the events of the chapter.
+4. AI updates the `continuity_tracker.md` AND `plot/database.json` with the events of the chapter.
 5. AI repeats this process for the requested batch size.
 6. Only stop and ask for review when the batch is complete or the `/goal` is met.
 
