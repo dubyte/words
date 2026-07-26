@@ -66,5 +66,41 @@ Empty output = consistent.
 - **No intentes editar múltiples archivos `draft.md` en un solo turno** si la reescritura es masiva. Procésalos uno por uno.
 - Si un cambio genera un efecto cascada hacia capítulos que el usuario no anticipó, detente y pregunta: *"Cambiar el Capítulo 15 significa que el Capítulo 20 también necesita una reescritura porque X objeto ya no existe. ¿Debo actualizar el tracker para el Capítulo 20 también?"*
 
-### 4. Git Operations
+### 4. Corrección Post-Review (Consumir Artefactos de write-novel-review)
+
+Modo específico para corregir hallazgos encontrados por `write-novel-review`. Activar cuando el usuario pida "arreglar los hallazgos de la review" o mencione archivos `review_global_structure.md` / `review_prose_report.md`.
+
+#### Input
+- `<novel>/review_global_structure.md` → hallazgos de Mode A (estructura) y síntesis Mode B (prosa)
+- `<novel>/review_prose_report.md` → hallazgos detallados de Mode B (si se generó por separado)
+
+#### Pipeline de Corrección
+
+1. **Leer y extraer** — Lee el/los artefactos de review. Identifica cada hallazgo con:
+   - Severidad (`🔴 Crítico`, `🟠 Alto`, `🟡 Medio`, `🟢 Bajo`)
+   - Capítulos afectados
+   - Descripción del problema
+   - Sugerencia de fix (línea `→ **Fix:**`)
+
+2. **Priorizar** — Procesa en orden estricto de severidad. Dentro de cada nivel, agrupa por capítulo para minimizar re-lecturas. Nunca hagas batch de fixes en capítulos no relacionados.
+
+3. **Ejecutar fix** — Para cada hallazgo:
+   a. Lee el `draft.md` del capítulo afectado.
+   b. Si la sugerencia de fix es concreta y correcta, aplícala directamente con `edit`.
+   c. Si es ambigua o hay opciones múltiples (ej. "Opción A o B"), pregunta al usuario cuál prefiere.
+   d. Si el cambio altera la trama (no solo prosa/corrección de continuidad), actualiza también `plot/continuity_tracker.md` y `plot/high_level_summary.md`.
+
+4. **Marcar resuelto** — Tras cada fix exitoso, añade `✅ RESUELTO (fecha)` al final de la entrada del hallazgo en el artefacto de review. Esto mantiene trazabilidad de qué se corrigió y qué queda pendiente.
+
+#### Reglas específicas por tipo de hallazgo
+
+- **Error de continuidad (contradicción fáctica):** Corregir la línea que rompe la cadena, no ambas. Si Cap A dice X y Cap B dice Y, decidir cuál es canónico y corregir el otro.
+- **Voz de personaje:** Corregir contra el perfil en `characters/`. Si el perfil no existe o es ambiguo, preguntar.
+- **Fusión S2 con costura visible:** Añadir el párrafo-puente faltante, no reescribir escenas completas.
+- **Inserto S3 forzado:** Reescribir para que fluya del contexto inmediato o eliminar si no aporta.
+- **Mostrar vs. contar:** Reemplazar resúmenes con escenas sensoriales. Mínimo 3 sentidos por escena nueva.
+- **Muletilla/estilo:** Buscar y reemplazar con variantes. No eliminar todas las ocurrencias, reducir ~1/3.
+
+### 5. Git Operations
 - Haz *commits* en hitos lógicos: "chore: update plot metadata for [Feature]" y luego "feat: rewrite Chapter [X] based on new plot".
+- Para correcciones post-review: "fix: resolve [severity] review findings in Caps [X-Y]" agrupando por severidad y lote de capítulos.

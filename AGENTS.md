@@ -7,6 +7,11 @@ This is a novel-writing skills workspace — no build system, no tests, no linti
 - **Branch name == Folder name == kebab-case novel name**
   - Novel "The Moonlight Thief" → branch `the-moonlight-thief` + folder `the-moonlight-thief/`
 - **`main` branch holds only the skill definitions and documentation** — never commit novel files to `main`
+- **`.ai/` changes always go to `main`**, never on a novel branch. Workflow:
+  1. Stash or commit unrelated changes on the novel branch
+  2. `git checkout main`
+  3. Apply `.ai/` changes and commit
+  4. `git checkout <novel-branch>` and `git merge origin/main`
 - **Resuming a novel:** `git checkout <kebab-name>` then work inside `<kebab-name>/` (relative paths)
 - **All paths must be relative to repo root.** Never use `/home/...` or `[workspace]/` literals
 

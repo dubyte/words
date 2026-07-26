@@ -47,4 +47,4 @@ Pregunta al usuario en qué quiere enfocarse:
 Genera siempre los hallazgos en un documento Markdown o artefacto estructurado que contenga:
 - **Fortalezas**: Qué está funcionando bien.
 - **Debilidades**: Áreas de preocupación o fallos de continuidad.
-- **Recomendaciones Accionables**: Cambios específicos que deben hacerse durante la fase de revisión (idealmente conectando con la skill `write-novel-revise`).
+- **Recomendaciones Accionables**: Cambios específicos que deben hacerse durante la fase de revisión. Cada hallazgo debe incluir severidad (🔴🟠🟡🟢), capítulos afectados, y sugerencia de fix precedida por `→ **Fix:**` para que `write-novel-revise` pueda consumirlos automáticamente en su pipeline de corrección post-review (sección 4 de su SKILL.md).
