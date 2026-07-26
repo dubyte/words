@@ -11,7 +11,7 @@ Switch a novel between `author` mode and `co-writer` mode at any time.
 
 ### 2. Show Current & Ask
 ```
-📖 [Project Name] — Current Mode: [author/co-writer]
+📖 [Project Name] — Current Mode: [author/co-writer/synthfic]
 
 Mode A — author (You write, AI assists)
   • AI asks questions, tracks continuity, creates context
@@ -23,7 +23,12 @@ Mode B — co-writer (AI writes, you direct)
   • AI generates prose, scenes, dialogue
   • You review, edit, and redirect
 
-Switch mode? (keep / author / co-writer)
+Mode C — synthfic (AI writes autonomously in batches)
+  • You set up the detailed outline and world data
+  • AI writes chapter after chapter autonomously based on established data
+  • AI maintains a continuity tracker automatically
+
+Switch mode? (keep / author / co-writer / synthfic)
 ```
 
 ### 3. Write Mode File
@@ -37,6 +42,7 @@ Switch mode? (keep / author / co-writer)
 📖 Next time you draft:
   [author] → You'll write. I'll support.
   [co-writer] → I'll draft. You'll direct.
+  [synthfic] → I'll draft autonomously based on your outlines.
 
 💡 Switch anytime with skill(name="write-novel-mode")
 ```

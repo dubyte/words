@@ -81,10 +81,15 @@ B — co-writer (AI writes, you direct)
   • AI generates prose, scenes, and dialogue.
   • Best if: You want to focus on story, not typing every sentence.
 
+C — synthfic (AI writes autonomously in batches)
+  • You set up the detailed outline and world data.
+  • AI writes chapter after chapter autonomously based on established data.
+  • Best if: You want to produce large amounts of text using predefined lore.
+
 💡 You can switch anytime with skill(name="write-novel-mode")
 ```
 
-Write the choice to `metadata/writing_mode.md` (content is just `author` or `co-writer`).
+Write the choice to `metadata/writing_mode.md` (content is just `author`, `co-writer`, or `synthfic`).
 
 Next, ask the user to specify the language and region for the project:
 

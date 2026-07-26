@@ -70,6 +70,7 @@ Generate context file with:
 - **Opening Hook**: [How to start with impact]
 - **Ending Hook**: [What to leave reader wondering]
 - **Tone**: [Emotional atmosphere]
+- **Style & Length**: [Read `metadata/style_guide.md` if it exists. Inherit the target word count (e.g. 2600 words) and stylistic rules to ensure long, deep chapters]
 ```
 
 **Step 3: Write the Draft** → `/chapters/chapter_NN/draft.md` (ESSENTIAL)
@@ -107,6 +108,21 @@ The AI generates prose. You review, edit, and redirect.
 5. Iterate until satisfied
 
 **Minimum requirement**: AI generates draft.md. You approve or revise.
+
+---
+
+**If mode = `synthfic` (AI writes autonomously in batches):**
+
+The AI generates prose autonomously without stopping for each chapter, relying purely on the established data.
+
+1. AI reads the high-level outline and continuity tracker.
+2. AI automatically generates the AGENTS.md context for the current chapter.
+3. AI generates the draft.md for the chapter.
+4. AI updates the continuity tracker with the events of the chapter.
+5. AI repeats this process for the requested batch size.
+6. Only stop and ask for review when the batch is complete or the `/goal` is met.
+
+**Minimum requirement**: AI generates multiple draft.md files autonomously.
 
 ---
 
@@ -152,6 +168,23 @@ What's next?
 3. 🔄 Ask AI to revise (give new direction)
 4. 📝 Add scene breakdown
 5. ⏸️  Take a break and check progress
+
+Your choice:
+```
+
+**If mode = `synthfic`:**
+```
+🤖 Batch of [X] Chapters Generated!
+
+📊 Stats:
+   Total words generated: [count]
+   Chapters generated: [list of chapters]
+
+What's next?
+
+1. ✅ Accept batch and continue to next batch
+2. ✏️  Review and edit specific chapters
+3. ⏸️  Take a break and check progress
 
 Your choice:
 ```
