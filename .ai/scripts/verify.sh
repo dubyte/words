@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-set -euo pipefail
+set -uo pipefail
 
 # verify.sh — Check structural consistency of a novel project
 # Usage: .ai/scripts/verify.sh [project-name]
