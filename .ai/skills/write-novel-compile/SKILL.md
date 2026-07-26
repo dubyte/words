@@ -1,3 +1,7 @@
+---
+name: write-novel-compile
+description: Compile draft chapters into a formatted e-book (EPUB). Use when you want to export the novel or generate a preview.
+---
 # Write Novel - Compile & Export
 
 ## Purpose

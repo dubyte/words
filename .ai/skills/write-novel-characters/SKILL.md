@@ -1,3 +1,7 @@
+---
+name: write-novel-characters
+description: Create and develop novel characters with psychology, relationships, and voice. Use when building character profiles, backstories, or arcs.
+---
 # Write Novel - Phase 4: Character Development
 
 ## Purpose

@@ -1,3 +1,7 @@
+---
+name: write-novel-use
+description: Select a novel project to work on so you don't have to specify it in every subsequent command.
+---
 # Write Novel - Use Project
 
 ## Purpose

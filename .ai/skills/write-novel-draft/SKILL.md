@@ -1,3 +1,7 @@
+---
+name: write-novel-draft
+description: Write chapter drafts with outlines, scene breakdowns, revision notes, and advanced writing tools.
+---
 # Write Novel - Phase 6: Drafting & Refinement
 
 ## Purpose

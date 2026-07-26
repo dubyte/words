@@ -1,3 +1,7 @@
+---
+name: write-novel-status
+description: Check the status of all novel projects or a specific project, showing current phase and next steps.
+---
 # Write Novel - Project Status
 
 ## Purpose

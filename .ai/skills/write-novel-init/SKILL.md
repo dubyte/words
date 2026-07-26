@@ -1,3 +1,7 @@
+---
+name: write-novel-init
+description: Initialize a new novel project with complete directory structure and Git repository.
+---
 # Write Novel - Initialize Project
 
 ## Purpose

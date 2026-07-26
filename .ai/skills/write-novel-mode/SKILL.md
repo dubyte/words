@@ -1,3 +1,7 @@
+---
+name: write-novel-mode
+description: Switch a novel between author mode and co-writer mode. Use when changing how the AI collaborates on the novel.
+---
 # Write Novel - Switch Writing Mode
 
 ## Purpose

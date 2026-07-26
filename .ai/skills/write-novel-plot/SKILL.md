@@ -1,3 +1,7 @@
+---
+name: write-novel-plot
+description: Structure your story with plot points, subplots, scenes, and advanced narrative techniques.
+---
 # Write Novel - Phase 5: Plot & Structure
 
 ## Purpose

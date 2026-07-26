@@ -1,3 +1,7 @@
+---
+name: write-novel-unuse
+description: Deselect the currently active novel project, returning to explicit project selection mode.
+---
 # Write Novel - Unuse Project
 
 ## Purpose

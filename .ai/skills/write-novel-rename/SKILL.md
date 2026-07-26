@@ -1,3 +1,7 @@
+---
+name: write-novel-rename
+description: Rename an existing novel project, including its folder, branch, and all references.
+---
 # Write Novel - Rename Project
 
 ## Purpose

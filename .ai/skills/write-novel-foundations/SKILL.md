@@ -1,3 +1,7 @@
+---
+name: write-novel-foundations
+description: Establish high-level novel framework: genre, target audience, themes, and premise. Use at the start of a new novel.
+---
 # Write Novel - Phase 2: Foundational Concepts
 
 ## Purpose

@@ -1,3 +1,7 @@
+---
+name: write-novel-archive
+description: Move completed or abandoned novel projects to an archive folder outside the active workspace.
+---
 # Write Novel - Archive Project
 
 ## Purpose

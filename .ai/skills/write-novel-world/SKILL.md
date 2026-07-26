@@ -1,3 +1,7 @@
+---
+name: write-novel-world
+description: Build the novel's setting with locations, cultures, history, magic systems, and other world elements.
+---
 # Write Novel - Phase 3: World Building
 
 ## Purpose
