@@ -18,11 +18,8 @@ Thumbs.db
 *.swp
 *.swo
 
-# Compiled e-books (generated files)
-**/exports/*.epub
-**/exports/*.mobi
-**/exports/*.azw3
-**/exports/*.pdf
+# Compiled e-books (generated directory)
+**/exports/
 
 # Temporary files
 *.tmp

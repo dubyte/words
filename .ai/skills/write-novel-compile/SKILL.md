@@ -64,9 +64,10 @@ Gather book metadata (can be auto-filled from existing files):
 ### 6. Chapter Ordering
 
 **Discover chapters:**
-- Scan `/chapters/` directory
-- Find all `chapter_*_draft.md` or `draft.md` files
-- Sort numerically (chapter_01, chapter_02, etc.)
+- Scan `/chapters/` directory for subdirectories
+- Find all `chapter_*/draft.md` files (zero-padded: chapter_001, chapter_002, etc.)
+- Sort numerically with `ls -d chapters/chapter_* | sort -t'_' -k2,2n -k3,3`
+- Handle split chapters (e.g., chapter_046a, chapter_046b, chapter_048c)
 
 **Allow reordering:**
 ```
@@ -145,20 +146,25 @@ Content here...
 ### 10. EPUB Generation
 
 **Using pandoc (recommended):**
+
+Write chapter paths to a temp file, then pass to pandoc via xargs (shell-agnostic, handles large file counts):
+
 ```bash
-pandoc \
+# 1. Generate sorted chapter list
+ls -d chapters/chapter_* | sort -t'_' -k2,2n -k3,3 \
+  | while read d; do f="$d/draft.md"; [ -f "$f" ] && echo "$f"; done > /tmp/chapters.txt
+
+# 2. Compile
+xargs -a /tmp/chapters.txt pandoc \
+  --from=markdown \
+  --metadata title="Book Title" \
   --epub-metadata=metadata.xml \
-  --epub-cover-image=cover.jpg \
-  --css=style.css \
-  --toc \
-  --toc-depth=2 \
-  -o output.epub \
-  title_page.md \
-  dedication.md \
-  chapters/chapter_01/draft.md \
-  chapters/chapter_02/draft.md \
-  ...
+  --epub-cover-image=assets/cover.png \
+  --toc --toc-depth=2 \
+  -o exports/output.epub
 ```
+
+Always pass `--metadata title="..."` alongside `--epub-metadata` — some readers ignore the XML title.
 
 **Alternative: Python ebooklib:**
 - Create EPUB book object
@@ -208,32 +214,6 @@ Examples:
 - `MyNovel_v2_2024-02-20.epub`
 - `TheCrystalThrone_FINAL.epub`
 - `MyNovel_PREVIEW_2024-01-15.epub` (preview mode)
-
-### 13. Version Tracking
-
-**Track compilations in:** `.ai/compile_history_[project].md`
-
-```
-[Project Name] - Compile History
-
-2024-01-15 14:30: MyNovel_v1_2024-01-15.epub
-  - Chapters: 1-5
-  - Format: EPUB
-  - Word count: 15,234
-  - Status: First draft
-
-2024-01-15 15:45: MyNovel_PREVIEW_2024-01-15.epub
-  - Chapters: 1-3 (Preview)
-  - Format: EPUB
-  - Word count: 8,421
-  - Status: Preview sample
-
-2024-02-20 09:15: MyNovel_v2_2024-02-20.epub
-  - Chapters: 1-12
-  - Format: EPUB
-  - Word count: 42,891
-  - Status: Complete draft
-```
 
 ### 14. Post-Compilation
 
@@ -409,18 +389,27 @@ MyNovel/
 
 ## Metadata XML Template
 
+Pandoc requires a `<metadata>` root element with the Dublin Core namespace:
+
 ```xml
-<?xml version="1.0" encoding="UTF-8"?>
-<dc:title>[Title]</dc:title>
-<dc:creator>[Author]</dc:creator>
-<dc:language>[en]</dc:language>
-<dc:date>[YYYY-MM-DD]</dc:date>
-<dc:description>[Description]</dc:description>
-<dc:subject>[Genre]</dc:subject>
-<dc:publisher>[Publisher or Self-published]</dc:publisher>
-<dc:rights>Copyright [Year] [Author]</dc:rights>
-<dc:identifier id="bookid">[ISBN or UUID]</dc:identifier>
+<metadata xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <dc:title>[Title]</dc:title>
+  <dc:creator>[Author]</dc:creator>
+  <dc:language>[es|en]</dc:language>
+  <dc:date>[YYYY-MM-DD]</dc:date>
+  <dc:description>[Description]</dc:description>
+  <dc:subject>[Genre]</dc:subject>
+  <dc:publisher>[Publisher or Self-published]</dc:publisher>
+  <dc:rights>Copyright [Year] [Author]</dc:rights>
+</metadata>
 ```
+
+### Fan Fiction / AI-Generated Works
+
+When the novel is fan fiction or AI-generated (not original work by the attributed author):
+- **Author credit**: Use your own name/pseudonym, "Anónimo", or "Generado por IA"
+- **Description**: Include disclaimer: "Fan fiction no oficial del universo [original]. Generado con asistencia de IA. No afiliado ni respaldado por el autor original."
+- **Rights**: Note original IP ownership: "Fan fiction — personajes y universo pertenecen a [original author]"
 
 ## Dependencies
 
