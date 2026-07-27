@@ -159,7 +159,7 @@ xargs -a /tmp/chapters.txt pandoc \
   --from=markdown \
   --metadata title="Book Title" \
   --metadata author="Author Name" \
-  --metadata lang="es" \
+  --metadata lang="[language]" \
   --metadata date="YYYY-MM-DD" \
   --epub-metadata=metadata.xml \
   --epub-cover-image=assets/cover.png \
