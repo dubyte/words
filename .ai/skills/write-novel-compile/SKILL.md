@@ -158,13 +158,16 @@ ls -d chapters/chapter_* | sort -t'_' -k2,2n -k3,3 \
 xargs -a /tmp/chapters.txt pandoc \
   --from=markdown \
   --metadata title="Book Title" \
+  --metadata author="Author Name" \
+  --metadata lang="es" \
+  --metadata date="YYYY-MM-DD" \
   --epub-metadata=metadata.xml \
   --epub-cover-image=assets/cover.png \
   --toc --toc-depth=2 \
   -o exports/output.epub
 ```
 
-Always pass `--metadata title="..."` alongside `--epub-metadata` — some readers ignore the XML title.
+**Important:** Pandoc's `--epub-metadata` only reads `<dc:title>`, `<dc:creator>`, `<dc:language>`, and `<dc:date>` from the XML file. Fields like `<dc:subject>`, `<dc:description>`, `<dc:publisher>`, and `<dc:rights>` must be passed as `--metadata` flags (e.g., `--metadata subject="Genre"`, `--metadata description="... "`, `--metadata publisher="Self-published"`, `--metadata rights="Copyright ... "`). Tested on pandoc 3.6.
 
 **Alternative: Python ebooklib:**
 - Create EPUB book object
@@ -403,6 +406,8 @@ Pandoc requires a `<metadata>` root element with the Dublin Core namespace:
   <dc:rights>Copyright [Year] [Author]</dc:rights>
 </metadata>
 ```
+
+**Note:** As of pandoc 3.6, `--epub-metadata` only reads `<dc:title>`, `<dc:creator>`, `<dc:language>`, and `<dc:date>` from this file. All other fields (`<dc:subject>`, `<dc:description>`, `<dc:publisher>`, `<dc:rights>`) must be passed via separate `--metadata` flags on the pandoc command line.
 
 ### Fan Fiction / AI-Generated Works
 
