@@ -45,16 +45,29 @@ Your choice:
 
 ### 5. Metadata Collection
 
-Gather book metadata (can be auto-filled from existing files):
+**Metadata File Discovery (YAML preferred):**
 
-**From `/metadata/` and README:**
+Pandoc reads far more fields from YAML than from XML. Check in this order:
+
+1. **Check `metadata.yaml`** in project root
+   - If exists → use `--metadata-file=metadata.yaml` (all fields preserved)
+   - Skip auto-gathering; the YAML is the source of truth
+2. **Check `metadata.xml`** in project root
+   - If exists → use `--epub-metadata=metadata.xml`
+   - ⚠️ Limited support: only `dc:date` and `dc:language` are reliably read by pandoc 3.7+
+   - You must still pass `title`, `author`, `subject`, `description`, `publisher`, `rights` via `--metadata` flags
+3. **If neither exists** → gather from sources below and create `metadata.yaml`
+
+**Gathering from `/metadata/` and README (only when creating new metadata.yaml):**
 - **Title**: From project name or README, or prompt user
-- **Author**: Prompt user (or use system user)
-- **Language**: Default "en" or prompt
+- **Author**: From `/metadata/author.md` or prompt user
+- **Language**: From `/metadata/language.md` or default "en"
 - **Description**: From `/plot/high_level_summary.md` or prompt
-- **Genre**: From `/metadata/genre.md` or prompt
+- **Genre/Subject**: From `/metadata/genre.md` or prompt
 - **Tags/Keywords**: Optional
 - **Publication Date**: Default today
+- **Publisher**: Prompt or default "Self-published"
+- **Rights**: Prompt or default "Copyright [Year] [Author]"
 
 **Cover Image (Optional):**
 - Check for `/cover.jpg`, `/cover.png`, or `/assets/cover.*`
@@ -154,20 +167,59 @@ Write chapter paths to a temp file, then pass to pandoc via xargs (shell-agnosti
 ls -d chapters/chapter_* | sort -t'_' -k2,2n -k3,3 \
   | while read d; do f="$d/draft.md"; [ -f "$f" ] && echo "$f"; done > /tmp/chapters.txt
 
-# 2. Compile
-xargs -a /tmp/chapters.txt pandoc \
-  --from=markdown \
-  --metadata title="Book Title" \
-  --metadata author="Author Name" \
-  --metadata lang="[language]" \
-  --metadata date="YYYY-MM-DD" \
-  --epub-metadata=metadata.xml \
-  --epub-cover-image=assets/cover.png \
-  --toc --toc-depth=2 \
-  -o exports/output.epub
+# 2. Determine metadata source and compile
+if [ -f metadata.yaml ]; then
+  # YAML found — all fields preserved by pandoc
+  xargs -a /tmp/chapters.txt pandoc \
+    --from=markdown \
+    --metadata-file=metadata.yaml \
+    --epub-cover-image=assets/cover.png \
+    --toc --toc-depth=2 \
+    -o exports/output.epub
+
+elif [ -f metadata.xml ]; then
+  # XML found — limited support; pass missing fields manually
+  xargs -a /tmp/chapters.txt pandoc \
+    --from=markdown \
+    --epub-metadata=metadata.xml \
+    --metadata title="Book Title" \
+    --metadata author="Author Name" \
+    --metadata lang="[language]" \
+    --metadata date="YYYY-MM-DD" \
+    --metadata subject="Genre" \
+    --metadata description="Description" \
+    --metadata publisher="Self-published" \
+    --metadata rights="Copyright Year Author" \
+    --epub-cover-image=assets/cover.png \
+    --toc --toc-depth=2 \
+    -o exports/output.epub
+
+else
+  # Neither found — create metadata.yaml from gathered data, then compile
+  cat > metadata.yaml <<'YAML'
+---
+title: "Book Title"
+author: "Author Name"
+date: "YYYY-MM-DD"
+lang: "[language]"
+subject: "Genre"
+description: "Description"
+publisher: "Self-published"
+rights: "Copyright Year Author"
+YAML
+  xargs -a /tmp/chapters.txt pandoc \
+    --from=markdown \
+    --metadata-file=metadata.yaml \
+    --epub-cover-image=assets/cover.png \
+    --toc --toc-depth=2 \
+    -o exports/output.epub
+fi
 ```
 
-**Important:** Pandoc's `--epub-metadata` only reads `<dc:title>`, `<dc:creator>`, `<dc:language>`, and `<dc:date>` from the XML file. Fields like `<dc:subject>`, `<dc:description>`, `<dc:publisher>`, and `<dc:rights>` must be passed as `--metadata` flags (e.g., `--metadata subject="Genre"`, `--metadata description="... "`, `--metadata publisher="Self-published"`, `--metadata rights="Copyright ... "`). Tested on pandoc 3.6.
+**YAML vs XML behavior:**
+- `--metadata-file=metadata.yaml` → pandoc reads **all** fields (title, author, date, language, subject, description, publisher, rights)
+- `--epub-metadata=metadata.xml` → pandoc 3.7+ reliably reads only `dc:date` and `dc:language`. Title, creator, and other fields are often ignored.
+- **Recommendation:** Use YAML. Create it with `skill(name="write-novel-metadata")` or let compile auto-generate it once.
 
 **Alternative: Python ebooklib:**
 - Create EPUB book object
@@ -380,9 +432,11 @@ MyNovel/
 ├── assets/                     # Optional
 │   ├── cover.jpg              # Book cover
 │   └── style.css              # Custom styling
-├── metadata/                   # Used for book info
+├── metadata/                   # Source files for book info
 │   ├── genre.md
 │   └── ...
+├── metadata.yaml              # Compiled metadata for pandoc (recommended)
+├── metadata.xml               # Legacy EPUB metadata (limited support)
 ├── dedication.md              # Optional front matter
 ├── prologue.md                # Optional front matter
 ├── epilogue.md                # Optional back matter
@@ -390,9 +444,31 @@ MyNovel/
 └── about_author.md            # Optional back matter
 ```
 
-## Metadata XML Template
+## Metadata Templates
 
-Pandoc requires a `<metadata>` root element with the Dublin Core namespace:
+### YAML (Recommended)
+
+Create `metadata.yaml` in the project root. Pandoc reads **all** fields via `--metadata-file`:
+
+```yaml
+---
+title: "Book Title"
+author: "Author Name"
+date: "YYYY-MM-DD"
+lang: "[language code, e.g. en, es]"
+subject: "Genre"
+description: "Short description or logline"
+publisher: "Self-published"
+rights: "Copyright [Year] [Author]"
+```
+
+✅ **Advantages:** All fields are preserved in the EPUB. No extra `--metadata` flags needed.
+
+### XML (Legacy — limited support)
+
+⚠️ **Warning:** As of pandoc 3.7, `--epub-metadata` has severely limited support. Testing shows only `<dc:date>` and `<dc:language>` are reliably read. `<dc:title>` and `<dc:creator>` are often ignored. Use YAML instead.
+
+If you must use XML, the required root element is:
 
 ```xml
 <metadata xmlns:dc="http://purl.org/dc/elements/1.1/">
@@ -407,7 +483,7 @@ Pandoc requires a `<metadata>` root element with the Dublin Core namespace:
 </metadata>
 ```
 
-**Note:** As of pandoc 3.6, `--epub-metadata` only reads `<dc:title>`, `<dc:creator>`, `<dc:language>`, and `<dc:date>` from this file. All other fields (`<dc:subject>`, `<dc:description>`, `<dc:publisher>`, `<dc:rights>`) must be passed via separate `--metadata` flags on the pandoc command line.
+When using XML, you must still pass the following fields as `--metadata` flags on the command line because pandoc does not read them from the XML file: `title`, `author`, `subject`, `description`, `publisher`, `rights`.
 
 ### Fan Fiction / AI-Generated Works
 
@@ -472,6 +548,10 @@ brew install pandoc
 - Show compile history
 - "Last compiled: [date] with [N] chapters"
 - "Last preview: [date]"
+
+**write-novel-metadata:**
+- Use to create or update `metadata.yaml` before compiling
+- Ensures all EPUB fields (title, author, genre, publisher, rights) are correctly preserved
 
 **write-novel-init:**
 - Create `/assets/` folder for covers and styling
