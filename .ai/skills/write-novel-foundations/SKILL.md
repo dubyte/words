@@ -24,7 +24,7 @@ This phase works identically in both `author` and `co-writer` modes — the AI i
 
 ### 3. Project Validation
 - Check if project directory exists
-- If not exists: Error "Project '[name]' does not exist. Run write-novel-init first."
+- If not exists: Error "Project '[name]' does not exist. Run /write-novel-init first."
 
 ### 4. Phase Detection
 - Check if `/metadata/genre.md` is NOT empty
@@ -104,7 +104,7 @@ skill(name="write-novel-foundations")
 
 ## Error Handling
 - Wrong directory: "Error: Must run from the repository root"
-- No projects: "No projects found. Run write-novel-init to create one."
+- No projects: "No projects found. Run /write-novel-init to create one."
 - Project not found: "Error: Project '[name]' does not exist."
 - Phase already complete: Offer to continue, overwrite, or cancel
 

@@ -132,7 +132,7 @@ The AI generates prose autonomously without stopping for each chapter, relying p
 
 ---
 
-💡 Switch modes anytime with `skill(name="write-novel-mode")`.
+💡 Switch modes anytime with `/write-novel-mode`.
 
 ---
 

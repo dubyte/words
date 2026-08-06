@@ -53,6 +53,8 @@ personal-todo.md
 # **/assets/*.mp4
 
 # Auto-created by opencode-ai/plugin (removed from package.json)
-.opencode/
+.opencode/*
+!.opencode/commands/
+!.opencode/commands/*
 .omo/
 .ai/.current_project
