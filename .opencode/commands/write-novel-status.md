@@ -7,12 +7,13 @@ Project name: $ARGUMENTS (optional).
 
 ## Steps
 
-### 1. Directory Validation
-- Working directory must be the repo root. Otherwise: "Error: Must run from the repository root".
+### 1. Resolve the Active Project (clone- or worktree-agnostic)
+- Run `.ai/scripts/novel-env.sh` (pass the project name if provided). It prints `NOVEL`, `NOVEL_DIR`, `REPO_ROOT`, resolving correctly in both a normal clone and a bare-repo + worktrees checkout.
+- If it fails to resolve a project (no arg, not on a novel branch, no `.current_project`), show an overview of all projects instead.
 
 ### 2. Project Selection
-1. If a project name is provided: show detailed status for that project.
-2. If no name: check `.ai/.current_project` for a stored project — show its detailed status; if none stored, show an overview of all projects.
+1. If a project name was provided: show detailed status for that project (`$NOVEL`).
+2. Otherwise use the resolved `$NOVEL` from step 1; if none was resolved, show an overview of all projects.
 
 **Phase Detection:** check file existence and read `.ai/[phase]_progress_[project].md` if available:
 - **Phase 1 (Setup)**: Project directory exists.

@@ -3,7 +3,11 @@ set -uo pipefail
 
 # verify.sh — Check structural consistency of a novel project
 # Usage: .ai/scripts/verify.sh [project-name]
-#        If no name given, reads .ai/.current_project
+#        If no name given, resolves via .ai/scripts/novel-env.sh
+#        (current branch, then .ai/.current_project) — works in both a
+#        normal clone and a bare-repo + worktrees checkout.
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 RED='\033[0;31m'
 GREEN='\033[0;32m'
@@ -18,11 +22,12 @@ ok()   { echo -e "${GREEN}OK${NC}"; ((pass++)); }
 err()  { echo -e "${RED}FAIL${NC} — $1"; ((fail++)); }
 warn() { echo -e "${YELLOW}WARN${NC} — $1"; }
 
-PROJECT="${1:-}"
-if [ -z "$PROJECT" ]; then
-  PROJECT=$(cat .ai/.current_project 2>/dev/null || true)
-fi
-if [ -z "$PROJECT" ] || [ ! -d "$PROJECT" ]; then
+# Resolve project name + directory (clone- and worktree-agnostic)
+source "$SCRIPT_DIR/novel-env.sh" "${1:-}"
+PROJECT="$NOVEL"
+PROJECT_DIR="$NOVEL_DIR"
+
+if [ -z "$PROJECT" ] || [ ! -d "$PROJECT_DIR" ]; then
   echo "Usage: .ai/scripts/verify.sh <project-name>"
   exit 1
 fi
@@ -32,8 +37,8 @@ echo ""
 
 # 1. Chapter count = outline count
 check "Chapters vs outlines count"
-ch_count=$(ls "$PROJECT"/chapters/chapter_*/draft.md 2>/dev/null | wc -l)
-out_count=$(ls "$PROJECT"/plot/chapter_outlines/chapter_*_detailed.md 2>/dev/null | wc -l)
+ch_count=$(ls "$PROJECT_DIR"/chapters/chapter_*/draft.md 2>/dev/null | wc -l)
+out_count=$(ls "$PROJECT_DIR"/plot/chapter_outlines/chapter_*_detailed.md 2>/dev/null | wc -l)
 if [ "$ch_count" -eq "$out_count" ]; then
   ok
 else
@@ -43,8 +48,8 @@ fi
 # 2. Chapter directories match outline files exactly
 check "Chapters match outlines (diff)"
 diff_out=$(diff \
-  <(ls "$PROJECT"/chapters/chapter_*/draft.md | sed 's|.*/chapter_||;s|/draft.md||' | sort -V) \
-  <(ls "$PROJECT"/plot/chapter_outlines/chapter_*_detailed.md | sed 's|.*/chapter_||;s|_detailed.md||' | sort -V) 2>&1) || true
+  <(ls "$PROJECT_DIR"/chapters/chapter_*/draft.md | sed 's|.*/chapter_||;s|/draft.md||' | sort -V) \
+  <(ls "$PROJECT_DIR"/plot/chapter_outlines/chapter_*_detailed.md | sed 's|.*/chapter_||;s|_detailed.md||' | sort -V) 2>&1) || true
 if [ -z "$diff_out" ]; then
   ok
 else
@@ -54,7 +59,7 @@ fi
 
 # 3. All outlines use 3-digit naming
 check "Outline naming (3-digit zero-padded)"
-bad_names=$(ls "$PROJECT"/plot/chapter_outlines/chapter_*_detailed.md 2>/dev/null | grep -v 'chapter_[0-9][0-9][0-9][ab]\?_detailed.md' || true)
+bad_names=$(ls "$PROJECT_DIR"/plot/chapter_outlines/chapter_*_detailed.md 2>/dev/null | grep -v 'chapter_[0-9][0-9][0-9][ab]\?_detailed.md' || true)
 if [ -z "$bad_names" ]; then
   ok
 else
@@ -70,7 +75,7 @@ max_w=3500
 climax_w=4800
 over=0
 under=0
-for f in $(ls "$PROJECT"/chapters/chapter_*/draft.md | sort -t/ -k3 -V); do
+for f in $(ls "$PROJECT_DIR"/chapters/chapter_*/draft.md | sort -t/ -k3 -V); do
   ch=$(echo "$f" | sed 's|.*/chapter_||;s|/draft.md||')
   wc=$(wc -w < "$f")
   if [ "$wc" -lt "$min_w" ]; then
@@ -92,7 +97,7 @@ if [ "$under" -eq 0 ] && [ "$over" -eq 0 ]; then echo "  All chapters in range."
 
 # 5. Total words
 echo ""
-total=$(find "$PROJECT"/chapters -name "draft.md" -exec cat {} + | wc -w)
+total=$(find "$PROJECT_DIR"/chapters -name "draft.md" -exec cat {} + | wc -w)
 echo "  Total: $total words | $ch_count chapters"
 
 echo ""

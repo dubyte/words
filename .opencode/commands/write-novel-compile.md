@@ -8,9 +8,8 @@ Arguments: project name + optional flags, e.g. `$ARGUMENTS` → `MyNovel --previ
 ## Steps
 
 ### 1. Directory & Project Validation
-- Working directory must be the repo root.
-- If project name provided: use it. Otherwise check `.ai/.current_project`; if none stored, list projects and prompt.
-- Check the project exists and `/chapters/` has draft files.
+- Run `.ai/scripts/novel-env.sh` (pass the project name if provided) — prints `NOVEL`, `NOVEL_DIR`, `REPO_ROOT`, resolving correctly in both a normal clone and a bare-repo + worktrees checkout. If it fails, list projects and prompt.
+- Check `$NOVEL_DIR/chapters/` has draft files.
 - If no drafts: "Error: No draft chapters found. Write some chapters first with /write-novel-draft".
 
 ### 2. Compilation Modes

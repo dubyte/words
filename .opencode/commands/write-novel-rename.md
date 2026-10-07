@@ -8,11 +8,11 @@ Arguments: source name = $1 (optional), new name = $2 (required).
 ## Steps
 
 ### 1. Directory Validation
-- Working directory must be the repo root. Otherwise: "Error: Must run from the repository root".
+- Run `.ai/scripts/novel-env.sh` (pass the source name as `$1` if provided) to resolve `REPO_ROOT` and the source project — works in both a normal clone and a bare-repo + worktrees checkout.
 
 ### 2. Project Selection
 1. If source name provided (`$1`): use that project.
-2. If no source name: check `.ai/.current_project` for a stored project — use it; if none stored, list all projects as a numbered list and prompt for selection.
+2. If no source name: use the resolved `$NOVEL` from step 1; if none resolved, list all projects as a numbered list and prompt for selection.
 3. New name (`$2`) is required. If missing, prompt the user.
 
 ### 3. Validation

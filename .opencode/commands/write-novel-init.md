@@ -15,13 +15,14 @@ Project name: $ARGUMENTS (optional). If not provided, prompt the user for a keba
 - If invalid: "Error: '[name]' is not a valid project name. Use alphanumeric characters, hyphens, or underscores."
 
 ### 2. Directory & Git Validation
-- Working directory must be the repo root (where `.git/` lives)
+- Run `git rev-parse --show-toplevel` to confirm you're in a working tree (works in both a normal clone and a bare-repo + worktrees checkout). In a worktree layout, run this from the `main` worktree.
 - If a git branch named `[project-name]` exists: "Error: Branch '[name]' already exists. Use `/write-novel-use` to continue or pick a different name."
 - If project folder `[project-name]/` exists: "Error: Project '[name]' already exists. Choose a different name or use /write-novel-rename."
 
 ### 3. Git Branch Creation
 - `git checkout -b [project-name]`
 - All subsequent work for this novel happens on this branch.
+- **Worktree layout:** after creating the branch, also give the novel its own folder: `git worktree add ../[project-name] [project-name]` (run from the repo root).
 
 ### 4. Project Structure Creation
 Create in a relative folder `[project-name]/` (never absolute paths):

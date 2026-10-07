@@ -22,6 +22,11 @@ Execute Git commands to create divergent timelines:
 2. Create Branch A: `git checkout -b alternate-ending-spare`
 3. (Optional) Create Branch B: `git checkout -b alternate-ending-kill`
 
+> **Worktree layout:** if the repo is checked out as a bare repo + worktrees, create
+> each alternate timeline as its own folder instead of `git checkout -b`:
+> `git worktree add ../alternate-ending-spare alternate-ending-spare`
+> (then the same for branch B). The merge steps below are unchanged.
+
 ### 3. Write in the Alternate Timeline
 - Switch to one of the new branches.
 - Update `plot/high_level_summary.md` and the relevant `chapter_outlines/` on this new branch to reflect the divergent choice.
@@ -29,9 +34,9 @@ Execute Git commands to create divergent timelines:
 - Commit the changes on this branch.
 
 ### 4. Compare and Merge
-- The user can switch between branches (`git checkout [branch-name]`) to read the different versions of the compiled EPUB or drafts.
+- The user can switch between branches (`git checkout [branch-name]` in a normal clone, or `cd` into the branch's worktree folder in a worktree layout) to read the different versions of the compiled EPUB or drafts.
 - Once the user decides which timeline is canonical:
-  1. `git checkout [canonical-branch]`
+  1. `git checkout [canonical-branch]` (normal clone), or `cd` into the canonical branch's worktree (worktree layout)
   2. `git merge [chosen-alternate-branch]`
   3. Delete the discarded branch if desired (`git branch -d [discarded-branch]`), or keep it as an alternate timeline for future reference.
 

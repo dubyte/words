@@ -23,23 +23,24 @@ This is a novel-writing workspace — no build system, no tests, no linting. Com
 - **`main` branch holds only the commands, skill definitions, and documentation** — never commit novel files to `main`
 - **`.ai/` and `.opencode/commands/` changes always go to `main`**, never on a novel branch. Workflow:
   1. Stash or commit unrelated changes on the novel branch
-  2. `git checkout main`
+  2. Switch to `main` — `git checkout main` (normal clone) or work in the `main` worktree folder (worktree layout)
   3. Apply `.ai/` changes and commit
-  4. `git checkout <novel-branch>` and `git merge origin/main`
-- **Resuming a novel:** `git checkout <kebab-name>` then work inside `<kebab-name>/` (relative paths)
+  4. Return to the novel branch and `git merge origin/main` (clone) or `git merge main` (worktree layout)
+- **Resuming a novel:** switch to its branch — `git checkout <kebab-name>` (normal clone) or `cd` into its worktree folder (worktree layout) — then work inside `<kebab-name>/` (relative paths)
+- **This repo works in both checkout layouts**: a normal clone and a bare-repo + worktrees setup. Resolve the active novel and repo root with `.ai/scripts/novel-env.sh`; never assume `.git/` is a directory or that `git checkout` is how you switch novels.
 - **All paths must be relative to repo root.** Never use `/home/...` or `[workspace]/` literals
 
 ## Novel State & Memory
 
 - Use `save_memory (scope="project")` with prefix `novel_architect_` for novel-specific state
   - Example: `novel_architect_method_tiempo: Snowflake`
-- Active project tracked in `.ai/.current_project` (plaintext, one line with the novel name)
+- Active project is resolved by `.ai/scripts/novel-env.sh` (current branch, then `.ai/.current_project` as a legacy hint)
 
 ## Key Files (agent should know)
 
 - `.ai/skills/` — all OpenCode skill definitions (SKILL.md + resources per skill)
 - `.opencode/commands/` — all slash commands (tracked in git; `.opencode/*` otherwise ignored)
-- `.ai/.current_project` — which novel is currently selected
+- `.ai/.current_project` — legacy hint for which novel is selected (see `.ai/scripts/novel-env.sh` for the authoritative resolution)
 - `.gitignore` — excludes `.opencode/*` (except commands), `.omo/`, compiled e-books (`**/exports/*.epub` etc.)
 
 ## Prerequisites

@@ -6,15 +6,15 @@ Stop using the currently selected project, returning to explicit project selecti
 ## Steps
 
 ### 1. Directory Validation
-- Working directory must be the repo root (where `.git/` lives). Otherwise: "Error: Must run from the repository root".
+- Run `.ai/scripts/novel-env.sh` (or `git rev-parse --show-toplevel`) to confirm you're inside a working tree and get `REPO_ROOT` — works in both a normal clone and a bare-repo + worktrees checkout.
 
 ### 2. Check Current State
-- Check if `./.ai/.current_project` exists.
+- Check if `$REPO_ROOT/.ai/.current_project` exists.
 - If it exists: read and display the project name before clearing.
 - If not: inform the user no project was selected.
 
 ### 3. Clear Operation
-- Delete the `.current_project` file.
+- Delete `$REPO_ROOT/.ai/.current_project`.
 - Remove the stored selection.
 
 ### 4. Output

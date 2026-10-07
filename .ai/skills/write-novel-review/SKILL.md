@@ -13,8 +13,8 @@ Analyze, review, and audit large sections of the novel (or the entire project) f
 ## Behavior
 
 ### 1. Directory & Project Validation
-- Check `.ai/.current_project` to identify the active novel.
-- Ensure `plot/continuity_tracker.md` and `metadata/style_guide.md` exist.
+- Run `.ai/scripts/novel-env.sh` (pass the project name if provided) to identify the active novel — it prints `NOVEL`, `NOVEL_DIR`, and `REPO_ROOT`, resolving correctly in both a normal clone and a bare-repo + worktrees checkout.
+- Ensure `$NOVEL_DIR/plot/continuity_tracker.md` and `$NOVEL_DIR/metadata/style_guide.md` exist.
 
 ### 2. Review Modes
 

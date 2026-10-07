@@ -15,14 +15,13 @@ This phase works identically in both `author` and `co-writer` modes — the AI i
 
 ## Behavior
 
-### 1. Directory Validation
-- Working directory must be the repo root (where `.git/` lives)
+### 1. Resolve the Active Project (clone- or worktree-agnostic)
+- Run `.ai/scripts/novel-env.sh` (pass the project name if the user provided one, e.g. `.ai/scripts/novel-env.sh MyFantasyNovel`).
+- It prints `NOVEL` (project name), `NOVEL_DIR` (the project's folder), and `REPO_ROOT` (repo root where `.ai/` and `.opencode/` live). This resolves correctly whether the repo is a **normal clone** or a **bare-repo + worktrees** checkout.
 
 ### 2. Project Selection
-1. **If project name provided**: Use that project
-2. **If no project name**: Check for stored current project in `.ai/.current_project`
-   - If stored project exists: Use stored project
-   - If no stored project: List all projects, show numbered list, prompt for selection
+- The active project is `$NOVEL` from step 1 (novel-env.sh exits with an error if it can't be resolved).
+- Work on files under `$NOVEL_DIR`: paths like `/plot/…` mean `$NOVEL_DIR/plot/…`; repo-level `.ai/…` tracking files mean `$REPO_ROOT/.ai/…`.
 
 ### 3. Phase Validation
 - Check if Phase 4 is complete (`/characters/protagonist.md` not empty)

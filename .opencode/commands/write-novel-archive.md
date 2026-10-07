@@ -8,11 +8,11 @@ Project name: $ARGUMENTS (optional).
 ## Steps
 
 ### 1. Directory Validation
-- Working directory must be the repo root. Otherwise: "Error: Must run from the repository root".
+- Run `.ai/scripts/novel-env.sh` (pass the project name if provided) to resolve `REPO_ROOT` and the active project — works in both a normal clone and a bare-repo + worktrees checkout.
 
 ### 2. Project Selection
 1. If project name provided: use that project.
-2. If no name: check `.ai/.current_project` for a stored project — use it; if none stored, list all projects as a numbered list and prompt for selection.
+2. If no name: use the resolved `$NOVEL` from step 1; if none resolved, list all projects as a numbered list and prompt for selection.
 
 ### 3. Archive Operation
 - Create `./archives/` directory if it doesn't exist.

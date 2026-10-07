@@ -8,8 +8,8 @@ Project name: $ARGUMENTS (optional).
 ## Steps
 
 ### 1. Project Validation
-- Working directory must be the repo root.
-- Check project directory exists. If not: "Error: Project '[name]' does not exist. Run /write-novel-init first."
+- Run `.ai/scripts/novel-env.sh` (pass the project name if provided) — prints `NOVEL`, `NOVEL_DIR`, `REPO_ROOT`, resolving correctly in both a normal clone and a bare-repo + worktrees checkout.
+- If `$NOVEL_DIR` doesn't exist: "Error: Project '$NOVEL' does not exist. Run /write-novel-init first."
 
 ### 2. Read Current Metadata
 Pre-fill current values in this priority order:

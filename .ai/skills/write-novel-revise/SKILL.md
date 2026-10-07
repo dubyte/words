@@ -13,7 +13,7 @@ Manage plot changes safely by updating the "brain" of the project (outlines and 
 ## Behavior
 
 ### 1. Validation
-- Identify active project via `.ai/.current_project`.
+- Run `.ai/scripts/novel-env.sh` (pass the project name if provided) to identify the active project — it prints `NOVEL`, `NOVEL_DIR`, and `REPO_ROOT`, resolving correctly in both a normal clone and a bare-repo + worktrees checkout.
 - Confirm the user's intent: What is the plot change? (e.g., "Character A survives instead of dying in Chapter 15").
 
 ### 2. The Revision Pipeline (STRICT ORDER)

@@ -8,21 +8,22 @@ Project name: $ARGUMENTS (optional).
 ## Steps
 
 ### 1. Directory Validation
-- Working directory must be the repo root (where `.git/` lives). Otherwise: "Error: Must run from the repository root".
+- Run `git rev-parse --show-toplevel` to confirm you're inside a working tree — works in both a normal clone and a bare-repo + worktrees checkout. Otherwise: "Error: Must run inside the repository".
 
 ### 2. Project Selection
 - If a name was provided: use it.
 - If no name provided:
-  - If `.ai/.current_project` exists and the user only wants to check current, show it (step 5).
-  - Otherwise list all project folders as a numbered list and prompt the user to choose.
+  - If `.ai/.current_project` exists and the user only wants to check current, show it (step 8).
+  - Otherwise list all project folders (worktree folders and repo-root subfolders) as a numbered list and prompt the user to choose.
 
 ### 3. Validation
-- Check project folder `[name]/` exists and git branch `[name]` exists.
-- If either missing: "Error: Project '[name]' does not exist."
+- Check the git branch `[name]` exists (`git show-ref --verify refs/heads/[name]`).
+- If missing: "Error: Project '[name]' does not exist."
 
-### 4. Git Checkout & cd
-- `git checkout [name]`
-- Change into the project folder (relative path).
+### 4. Activate (checkout OR worktree) & cd
+- Resolve the project directory with `.ai/scripts/novel-env.sh [name]` — it prints `NOVEL_DIR` and `NOVEL_WORKTREE`.
+  - If `NOVEL_WORKTREE` is set (worktree layout): just `cd "$NOVEL_DIR"` — that branch is already checked out there.
+  - Else (normal clone): `git checkout [name]` then `cd "$NOVEL_DIR"`.
 - All subsequent file operations happen inside this folder, on this branch.
 
 ### 5. Mode Check & Prompt

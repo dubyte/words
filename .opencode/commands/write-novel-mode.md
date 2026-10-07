@@ -8,11 +8,11 @@ Mode: $ARGUMENTS (optional — one of `author`, `co-writer`, `synthfic`). If pro
 ## Steps
 
 ### 1. Validate Project
-- A project must be selected (explicit name or `.ai/.current_project`).
-- Otherwise: "Error: No project selected. Run /write-novel-use first."
+- Run `.ai/scripts/novel-env.sh` (pass the project name if provided) — prints `NOVEL`, `NOVEL_DIR`, `REPO_ROOT`, resolving correctly in both a normal clone and a bare-repo + worktrees checkout.
+- If it fails: "Error: No project selected. Run /write-novel-use first."
 
 ### 2. Read Current Mode
-- Read `metadata/writing_mode.md` in the current project. Default to `author` if missing.
+- Read `$NOVEL_DIR/metadata/writing_mode.md`. Default to `author` if missing.
 
 ### 3. Show Current & Ask (if no mode argument given)
 ```
@@ -26,7 +26,7 @@ Switch mode? (keep / author / co-writer / synthfic)
 ```
 
 ### 4. Write Mode File
-- Write the selected mode to `metadata/writing_mode.md`.
+- Write the selected mode to `$NOVEL_DIR/metadata/writing_mode.md`.
 - `git commit -m "Switch writing mode to [mode]"`.
 
 ### 5. Output
