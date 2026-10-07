@@ -30,6 +30,13 @@ This is a novel-writing workspace — no build system, no tests, no linting. Com
 - **This repo works in both checkout layouts**: a normal clone and a bare-repo + worktrees setup. Resolve the active novel and repo root with `.ai/scripts/novel-env.sh`; never assume `.git/` is a directory or that `git checkout` is how you switch novels.
 - **All paths must be relative to repo root.** Never use `/home/...` or `[workspace]/` literals
 
+## Multi-Agent Portability
+
+- Skills live in `.ai/skills/` and commands in `.opencode/commands/` — these are the **canonical copies**.
+- Reasonix reads the same files via the `.reasonix/skills` and `.reasonix/commands` symlinks; shared conventions also live in `REASONIX.md`.
+- Antigravity (agy) is a delegate, not a skill host: point it at the repo and have it follow `.ai/skills/<skill>/SKILL.md` (see `/write-novel-agy`).
+- Skill bodies avoid agent-specific tool names so OpenCode, Reasonix, and Antigravity can all run them.
+
 ## Novel State & Memory
 
 - Use `save_memory (scope="project")` with prefix `novel_architect_` for novel-specific state

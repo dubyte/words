@@ -20,7 +20,7 @@ Manage plot changes safely by updating the "brain" of the project (outlines and 
 
 #### Step 1: Update the High-Level Plot
 - Revisa `plot/high_level_summary.md`.
-- Modifica el resumen para reflejar el nuevo cambio usando `replace_file_content`.
+- Modifica el resumen para reflejar el nuevo cambio (edita el archivo).
 
 #### Step 2: Update the Detailed Outlines
 - Identifica qué capítulos se ven directamente afectados por el cambio.

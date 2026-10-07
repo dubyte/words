@@ -17,8 +17,8 @@ When tasked with writing a chapter or scene:
 - Identify the specific Entities (Characters, Locations, Artifacts, Magic Systems) that will be active in this chapter based on `plot/chapter_outlines/chapter_XX_detailed.md`.
 
 ### 2. Targeted Retrieval
-- Use file search tools (like `grep_search`) to locate mentions of these specific Entities within the `/characters/` and `/world/` directories.
-- If the Entity has a dedicated Markdown file (e.g., `characters/kvothe.md`), use `view_file` to read the exact details of that entity.
+- Use file search (e.g. your agent's grep/search tool) to locate mentions of these specific Entities within the `/characters/` and `/world/` directories.
+- If the Entity has a dedicated Markdown file (e.g., `characters/kvothe.md`), read the exact details of that entity.
 
 ### 3. Context Assembly
 - Extract the relevant facts (e.g., "Kvothe has red hair", "The Eolian smells like smoke and wine") and inject them into the `AGENTS.md` context file for that specific chapter.
