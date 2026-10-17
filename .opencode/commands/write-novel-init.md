@@ -17,12 +17,13 @@ Project name: $ARGUMENTS (optional). If not provided, prompt the user for a keba
 ### 2. Directory & Git Validation
 - Run `git rev-parse --show-toplevel` to confirm you're in a working tree (works in both a normal clone and a bare-repo + worktrees checkout). In a worktree layout, run this from the `main` worktree.
 - If a git branch named `[project-name]` exists: "Error: Branch '[name]' already exists. Use `/write-novel-use` to continue or pick a different name."
-- If project folder `[project-name]/` exists: "Error: Project '[name]' already exists. Choose a different name or use /write-novel-rename."
+- If project folder `[project-name]/` (or `../[project-name]/` in a worktree layout) exists: "Error: Project '[name]' already exists. Choose a different name or use /write-novel-rename."
 
 ### 3. Git Branch Creation
-- `git checkout -b [project-name]`
-- All subsequent work for this novel happens on this branch.
-- **Worktree layout:** after creating the branch, also give the novel its own folder: `git worktree add ../[project-name] [project-name]` (run from the repo root).
+Detect the checkout layout (`git worktree list` shows a `(bare)` entry, or `git -C "$(git rev-parse --git-common-dir)" rev-parse --is-bare-repository` is `true` for a worktree layout):
+- **Normal clone:** run `git checkout -b [project-name]`.
+- **Worktree layout:** from the `main` worktree run `git worktree add -b [project-name] ../[project-name] main`, then `cd ../[project-name]`. Do **not** run `git checkout -b` in the `main` worktree.
+- All subsequent work for this novel (§4 onward: creating `[project-name]/`, committing) happens on this branch (and inside the new worktree, if using worktrees).
 
 ### 4. Project Structure Creation
 Create in a relative folder `[project-name]/` (never absolute paths):
