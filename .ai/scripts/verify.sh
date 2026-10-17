@@ -23,11 +23,14 @@ err()  { echo -e "${RED}FAIL${NC} — $1"; ((fail++)); }
 warn() { echo -e "${YELLOW}WARN${NC} — $1"; }
 
 # Resolve project name + directory (clone- and worktree-agnostic)
-source "$SCRIPT_DIR/novel-env.sh" "${1:-}"
+source "$SCRIPT_DIR/novel-env.sh" "${1:-}" || {
+  echo "Usage: .ai/scripts/verify.sh <project-name>"
+  exit 1
+}
 PROJECT="$NOVEL"
 PROJECT_DIR="$NOVEL_DIR"
 
-if [ -z "$PROJECT" ] || [ ! -d "$PROJECT_DIR" ]; then
+if [ ! -d "$PROJECT_DIR" ]; then
   echo "Usage: .ai/scripts/verify.sh <project-name>"
   exit 1
 fi
