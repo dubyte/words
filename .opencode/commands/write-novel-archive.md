@@ -17,7 +17,7 @@ Project name: $ARGUMENTS (optional).
 ### 3. Archive Operation
 - Create `./archives/` directory if it doesn't exist.
 - Move the selected project directory to `./archives/[project-name]/`.
-- If the archived project was the currently selected project in `.ai/.current_project`, delete that file.
+- If the archived project was the currently selected project in `$CURRENT_PROJECT_FILE` (or legacy `$REPO_ROOT/.ai/.current_project`), delete those files.
 
 ### 4. Git Operation
 - `git add -A`

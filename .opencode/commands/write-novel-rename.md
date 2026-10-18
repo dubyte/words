@@ -24,7 +24,7 @@ Arguments: source name = $1 (optional), new name = $2 (required).
 - Rename the directory from `[source]` to `[new-name]`.
 - Update any internal references (if applicable).
 - Update README.md title if it contains the old name.
-- If `./.ai/.current_project` contains `[source]`, update it to `[new-name]`.
+- If `$CURRENT_PROJECT_FILE` (or legacy `$REPO_ROOT/.ai/.current_project`) contains `[source]`, write `[new-name]` to `$CURRENT_PROJECT_FILE` and remove the legacy file if present.
 
 ### 5. Git Operation
 - `git add -A`

@@ -4,7 +4,7 @@ set -uo pipefail
 # verify.sh — Check structural consistency of a novel project
 # Usage: .ai/scripts/verify.sh [project-name]
 #        If no name given, resolves via .ai/scripts/novel-env.sh
-#        (current branch, then .ai/.current_project) — works in both a
+#        (current branch, then $CURRENT_PROJECT_FILE) — works in both a
 #        normal clone and a bare-repo + worktrees checkout.
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"

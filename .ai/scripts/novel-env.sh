@@ -12,7 +12,8 @@
 # Resolution order for the novel:
 #   1. explicit argument
 #   2. current branch (branch name == folder name), unless it's `main`
-#   3. .ai/.current_project (legacy hint)
+#   3. $CURRENT_PROJECT_FILE (<git-common-dir>/novel_current_project), with
+#      fallback to legacy $REPO_ROOT/.ai/.current_project
 
 _sourced=0
 [ "${BASH_SOURCE[0]}" != "$0" ] && _sourced=1
@@ -20,8 +21,12 @@ _sourced=0
 
 REPO_ROOT="$(git rev-parse --show-toplevel 2>/dev/null)" || {
   echo "Error: not inside a git working tree (clone or worktree)." >&2
+  unset _sourced
   return 1 2>/dev/null || exit 1
 }
+
+CURRENT_PROJECT_FILE="$(git rev-parse --path-format=absolute --git-common-dir)/novel_current_project"
+export REPO_ROOT CURRENT_PROJECT_FILE
 
 CURRENT_BRANCH="$(git branch --show-current 2>/dev/null || true)"
 
@@ -33,11 +38,19 @@ if [ -z "$NOVEL" ] && [ -n "$CURRENT_BRANCH" ] && [ "$CURRENT_BRANCH" != "main" 
 fi
 
 if [ -z "$NOVEL" ]; then
-  NOVEL="$(cat "$REPO_ROOT/.ai/.current_project" 2>/dev/null || true)"
+  _stored="$(cat "$CURRENT_PROJECT_FILE" 2>/dev/null || true)"
+  if [ -z "$_stored" ]; then
+    _stored="$(cat "$REPO_ROOT/.ai/.current_project" 2>/dev/null || true)"
+  fi
+  if [ -n "$_stored" ] && git show-ref --verify --quiet "refs/heads/$_stored" 2>/dev/null; then
+    NOVEL="$_stored"
+  fi
+  unset _stored
 fi
 
 if [ -z "$NOVEL" ]; then
   echo "Error: no novel project selected. Pass a project name, or run /write-novel-use first." >&2
+  unset _sourced
   return 1 2>/dev/null || exit 1
 fi
 
@@ -58,11 +71,11 @@ else
   NOVEL_DIR="$REPO_ROOT/$NOVEL"
 fi
 
-export REPO_ROOT NOVEL NOVEL_DIR NOVEL_WORKTREE MAIN_WORKTREE
+export NOVEL NOVEL_DIR NOVEL_WORKTREE MAIN_WORKTREE
 
 if [ "$_sourced" -eq 0 ]; then
-  printf 'REPO_ROOT=%s\nNOVEL=%s\nNOVEL_DIR=%s\nNOVEL_WORKTREE=%s\nMAIN_WORKTREE=%s\n' \
-    "$REPO_ROOT" "$NOVEL" "$NOVEL_DIR" "$NOVEL_WORKTREE" "$MAIN_WORKTREE"
+  printf 'REPO_ROOT=%s\nCURRENT_PROJECT_FILE=%s\nNOVEL=%s\nNOVEL_DIR=%s\nNOVEL_WORKTREE=%s\nMAIN_WORKTREE=%s\n' \
+    "$REPO_ROOT" "$CURRENT_PROJECT_FILE" "$NOVEL" "$NOVEL_DIR" "$NOVEL_WORKTREE" "$MAIN_WORKTREE"
 fi
 unset _sourced
 unset -f worktree_for_branch

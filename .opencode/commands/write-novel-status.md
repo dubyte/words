@@ -9,7 +9,7 @@ Project name: $ARGUMENTS (optional).
 
 ### 1. Resolve the Active Project (clone- or worktree-agnostic)
 - Run `.ai/scripts/novel-env.sh` (pass the project name if provided). It prints `NOVEL`, `NOVEL_DIR`, `REPO_ROOT`, resolving correctly in both a normal clone and a bare-repo + worktrees checkout.
-- If it fails to resolve a project (no arg, not on a novel branch, no `.current_project`), show an overview of all projects instead.
+- If it fails to resolve a project (no arg, not on a novel branch, no stored selection), show an overview of all projects instead.
 
 ### 2. Project Selection
 1. If a project name was provided: show detailed status for that project (`$NOVEL`).
