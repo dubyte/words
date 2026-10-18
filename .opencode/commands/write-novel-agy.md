@@ -4,25 +4,27 @@ description: Delegate a novel-writing phase to Google Antigravity (agy), which f
 Delegate a novel-writing phase to Google Antigravity (agy), which reads this
 repo's skills from `.ai/skills/` and follows them.
 
-Phase: $ARGUMENTS (optional — default: drafting)
+Arguments: `$ARGUMENTS` — `<phase> [mode]` (optional — default phase: `draft`, default mode: `review`).
+Example: `/write-novel-agy draft execute`
 
-### 1. Resolve the project
+### 1. Parse arguments & resolve the project
+- Parse `$ARGUMENTS`: first token is `<phase>` (default: `draft`), second token is `<mode>` (default: `review`).
 - Run `.ai/scripts/novel-env.sh` (pass the project name if given) to get `NOVEL`, `NOVEL_DIR`, and `REPO_ROOT`.
 
 ### 2. Delegate to agy
-- Use the `collaborating-with-antigravity` skill / `agy-bridge`:
+- Invoke the bridge via `${AGY_BRIDGE:-agy-bridge}` (set `AGY_BRIDGE` to the path of `agy_bridge.py` if it is not on `PATH`):
   ```bash
-  python ~/.agents/skills/collaborating-with-antigravity/scripts/agy_bridge.py \
+  ${AGY_BRIDGE:-agy-bridge} \
     --cd "$REPO_ROOT" \
-    --mode review \
+    --mode "${MODE:-review}" \
     --PROMPT "Follow .ai/skills/write-novel-<phase>/SKILL.md for the novel project '$NOVEL'. Work inside $NOVEL_DIR."
   ```
-- Pick the mode:
-  - `review` — critique the current state of that phase.
+- Modes (`<mode>`):
+  - `review` (default) — critique the current state of that phase.
   - `ask` — one-shot question about the novel.
   - `plan` — multi-step plan for the phase.
   - `execute` — apply edits (needs `--allow-write`; runs in an isolated worktree).
-- Map the phase to a skill: foundations, world, characters, plot, draft, review, revise, fork.
+- Map `<phase>` to a skill: `foundations`, `world`, `characters`, `plot`, `draft`, `review`, `revise`, `fork`.
 
 ### 3. Review the result
 - Read the bridge's JSON envelope (`success`, `agent_messages`, `error`).

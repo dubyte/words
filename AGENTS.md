@@ -15,6 +15,7 @@ This is a novel-writing workspace — no build system, no tests, no linting. Com
 | `/write-novel-mode` | Switch writing mode (author / co-writer / synthfic) |
 | `/write-novel-metadata` | Update book metadata for EPUB compilation |
 | `/write-novel-compile` | Compile draft chapters to EPUB |
+| `/write-novel-agy` | Delegate a novel-writing phase to Google Antigravity (`agy`) |
 
 ## Git & Folder Workflow (CRITICAL)
 
@@ -23,9 +24,9 @@ This is a novel-writing workspace — no build system, no tests, no linting. Com
 - **`main` branch holds only the commands, skill definitions, and documentation** — never commit novel files to `main`
 - **`.ai/` and `.opencode/commands/` changes always go to `main`**, never on a novel branch. Workflow:
   1. Stash or commit unrelated changes on the novel branch
-  2. Switch to `main` — `git checkout main` (normal clone) or work in the `main` worktree folder (worktree layout)
+  2. Switch to `main` — `git checkout main` (normal clone) or work in the `main` worktree folder (`$MAIN_WORKTREE` from `.ai/scripts/novel-env.sh` in a worktree layout)
   3. Apply `.ai/` changes and commit
-  4. Return to the novel branch and `git merge origin/main` (clone) or `git merge main` (worktree layout)
+  4. Return to the novel branch and `git fetch && git merge origin/main` (works in both layouts; worktrees share refs, or `git merge main` if not yet pushed)
 - **Resuming a novel:** switch to its branch — `git checkout <kebab-name>` (normal clone) or `cd` into its worktree folder (worktree layout) — then work inside `<kebab-name>/` (relative paths)
 - **This repo works in both checkout layouts**: a normal clone and a bare-repo + worktrees setup. Resolve the active novel and repo root with `.ai/scripts/novel-env.sh`; never assume `.git/` is a directory or that `git checkout` is how you switch novels.
 - **All paths must be relative to repo root.** Never use `/home/...` or `[workspace]/` literals
@@ -41,16 +42,17 @@ This is a novel-writing workspace — no build system, no tests, no linting. Com
 
 - Use `save_memory (scope="project")` with prefix `novel_architect_` for novel-specific state
   - Example: `novel_architect_method_tiempo: Snowflake`
-- Active project is resolved by `.ai/scripts/novel-env.sh` (current branch, then `.ai/.current_project` as a legacy hint)
+- Active project is resolved by `.ai/scripts/novel-env.sh` (explicit arg → current branch if matching folder exists → `$CURRENT_PROJECT_FILE` in `<git-common-dir>/novel_current_project`, with `.ai/.current_project` as a legacy fallback)
 
 ## Key Files (agent should know)
 
 - `.ai/skills/` — all OpenCode skill definitions (SKILL.md + resources per skill)
 - `.opencode/commands/` — all slash commands (tracked in git; `.opencode/*` otherwise ignored)
-- `.ai/.current_project` — legacy hint for which novel is selected (see `.ai/scripts/novel-env.sh` for the authoritative resolution)
+- `$(git rev-parse --path-format=absolute --git-common-dir)/novel_current_project` (`$CURRENT_PROJECT_FILE`) — shared selection file for `/write-novel-use`, visible across all worktrees and untracked by git (`.ai/.current_project` is read only as a legacy fallback)
 - `.gitignore` — excludes `.opencode/*` (except commands), `.omo/`, compiled e-books (`**/exports/*.epub` etc.)
 
 ## Prerequisites
 
 - `pandoc` required for EPUB generation (`/write-novel-compile`)
 - `calibre` (provides `ebook-convert`) optional for MOBI/AZW3/PDF conversion
+- `agy-bridge` (from the `collaborating-with-antigravity` skill, or set `AGY_BRIDGE=/path/to/agy_bridge.py`) optional for `/write-novel-agy`

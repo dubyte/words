@@ -12,7 +12,8 @@ Antigravity used as a delegate). This file is read specifically by Reasonix.
 - **Shared conventions** live in `AGENTS.md` (read by both OpenCode and Reasonix).
 
 Do not create a second copy of a skill under `.reasonix/`; edit the canonical
-`.ai/skills/` file instead.
+`.ai/skills/` file instead. (Note: on Windows, ensure `git config core.symlinks true`
+is enabled before cloning so `.reasonix/*` are checked out as real symlinks.)
 
 ## Working in this repo
 
