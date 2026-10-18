@@ -23,12 +23,20 @@ Execute Git commands to create divergent timelines:
 3. (Optional) Create Branch B: `git checkout -b alternate-ending-kill`
 
 > **Worktree layout:** if the repo is checked out as a bare repo + worktrees, create
-> each alternate timeline as its own folder instead of `git checkout -b`:
-> `git worktree add ../alternate-ending-spare alternate-ending-spare`
+> each alternate timeline as its own worktree folder instead of `git checkout -b`:
+> `git worktree add -b alternate-ending-spare ../alternate-ending-spare`
 > (then the same for branch B). The merge steps below are unchanged.
 
+> **Folder vs. branch exception:** Narrative fork branches are the **one sanctioned
+> exception** to the "branch name == folder name" rule. Alternate branches keep the
+> **original novel folder name** (e.g. `my-fantasy-novel/` inside the fork branch or
+> worktree). Because the branch name does not match a project directory, `.ai/scripts/novel-env.sh`
+> will not infer the project from the branch name — pass the novel name explicitly
+> (`.ai/scripts/novel-env.sh my-fantasy-novel`) or rely on the stored selection from
+> `/write-novel-use` (`$CURRENT_PROJECT_FILE`).
+
 ### 3. Write in the Alternate Timeline
-- Switch to one of the new branches.
+- Switch to one of the new branches (and work inside the original `<novel>/` directory).
 - Update `plot/high_level_summary.md` and the relevant `chapter_outlines/` on this new branch to reflect the divergent choice.
 - Use `write-novel-draft` to write the chapters in this alternate timeline.
 - Commit the changes on this branch.
